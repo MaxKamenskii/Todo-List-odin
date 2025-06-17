@@ -1,3 +1,4 @@
+console.log("Module loaded");
 export const allToDos = [];
 
 export class ToDo {
@@ -11,13 +12,13 @@ export class ToDo {
 }
 
 export function addToTheList(title, description, dueDate, priority) {
-    let toDo = new ToDo(title, description, dueDate, priority)
+    const toDo = new ToDo(title, description, dueDate, priority)
     allToDos.push(toDo)
 }
 
 export function deleteToDo(title) {
-    const indexOfToDo = allToDos.indexOf(title)
-    allToDos.splice(indexOfToDo - 1, 1)
+    const indexOfToDo = allToDos.findIndex(todo => todo.title === title)
+    if (indexOfToDo !== -1) {
+        allToDos.splice(indexOfToDo, 1)
+    }
 }
-
-
