@@ -8,29 +8,36 @@ export class ToDo {
         this.dueDate = dueDate;
         this.priority = priority;
         this.list = list;
+        this.done = done;
+        this.id = crypto.randomUUID()
     }
-}
-
-export function addToAllToDos(title, description, dueDate, priority) {
-    const toDo = new ToDo(title, description, dueDate, priority)
-    allToDos.push(toDo)
-}
-
-export function deleteToDo(title) {
-    const indexOfToDo = allToDos.findIndex(todo => todo.title === title)
-    if (indexOfToDo !== -1) {
+    addToAllToDos() {
+        this.done = false;
+        allToDos.push(this)
+    }
+    deleteToDo(){
+        const indexOfToDo = allToDos.findIndex(todo => todo.title === this.title)
+        if (indexOfToDo !== -1) {
         allToDos.splice(indexOfToDo, 1)
+        }
     }
-}
-
-export function addToTheList(toDoTitle, listName) {
-    let indexOfToDo = allToDos.findIndex(todo => todo.title === toDoTitle)
-    allToDos[indexOfToDo].list = listName.name;
-    listName.ToDos.push(allToDos[indexOfToDo]);
-}
-
-export function setPriority(toDoTitle, priority) {
-    let indexOfToDo = allToDos.findIndex(todo => todo.title === toDoTitle)
-    allToDos[indexOfToDo].priority = priority
-    console.log(allToDos[indexOfToDo].priority)
+    addToTheList(listName) {
+        if(allToDos.includes(this)) {
+        this.list = listName.name;
+        let id = this.id
+        listName.ToDos.push(id)
+        } else {
+            console.log("The ToDo has been deleted")
+        }
+    }
+    setPriority(newPriority){
+        this.priority = newPriority
+    }
+    toggleDoneStatus() {
+        if(this.done === false){
+            this.done = true
+        } else {
+            this.done = false
+        }
+    }
 }
