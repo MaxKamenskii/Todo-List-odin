@@ -1,3 +1,4 @@
+import "./styles.css";
 import {allToDos} from './createToDo.js'
 import {ToDo} from './createToDo.js'
 import {List} from './projects.js'
