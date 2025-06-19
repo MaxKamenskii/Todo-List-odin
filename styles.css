@@ -1,0 +1,24 @@
+:root {
+    --sidebar-background-color: #f9fafb;
+    --sidebar-element-hover-color: #E0E4E8;
+}
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.sideBar {
+    grid-column: 1;
+    background-color: var(--sidebar-background-color);
+    height: 100vh;
+    padding-left: 15px;
+    padding-top: 20px;
+}
+.sideBar-el {
+    margin: 5px 10px;
+    border-radius: 5px;
+    padding: 2px;
+}
+.sideBar-el:hover {
+    background-color: var(--sidebar-element-hover-color);
+}
