@@ -2,23 +2,58 @@
     --sidebar-background-color: #f9fafb;
     --sidebar-element-hover-color: #E0E4E8;
 }
+/* The whole page layout */
 .container {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 250px 1fr;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+/* Sidebar styling */
 .sideBar {
     grid-column: 1;
     background-color: var(--sidebar-background-color);
     height: 100vh;
     padding-left: 15px;
     padding-top: 20px;
+    font-size: 1.5rem;
 }
 .sideBar-el {
     margin: 5px 10px;
     border-radius: 5px;
     padding: 2px;
 }
+.sideBarSvg {
+    margin-right: 10px;
+}
 .sideBar-el:hover {
+    cursor: pointer;
     background-color: var(--sidebar-element-hover-color);
+}
+/* content styling */
+.contentHeader {
+    height: 100px;
+    width: 100%;
+}
+
+.headerDiv {
+    color: black;
+}
+
+.headerBlock {
+    display: flex;
+    gap: 20px;
+    margin-left: 10%;
+}
+.contentBody {
+    margin: 0px 50px;
+}
+.toDoElement {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 4px;
+}
+.toDoElement:hover {
+    background-color: #6092C9;
+    color: white;
 }

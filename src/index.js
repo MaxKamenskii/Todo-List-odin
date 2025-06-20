@@ -2,6 +2,7 @@ import "./styles.css";
 import {allToDos} from './createToDo.js'
 import {ToDo} from './createToDo.js'
 import {List} from './projects.js'
+import { generateInbox } from "./inbox.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
 console.log([...allToDos])
@@ -14,7 +15,18 @@ const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "June 18", "medium
 firstToDo.addToAllToDos()
 secondToDo.addToAllToDos()
 thirdToDo.addToAllToDos()
-firstToDo.addToTheList(homeList)
-secondToDo.addToTheList(homeList)
+// firstToDo.addToTheList(homeList)
+// secondToDo.addToTheList(homeList)
 
 console.log(allToDos)
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inboxButton = document.getElementById('inboxButton');
+    if(inboxButton) {
+        inboxButton.addEventListener('click', () => {
+            generateInbox()
+            console.log('inbox button is working!')
+        })
+    }
+})

@@ -4,3 +4,7 @@ export class List{
         this.ToDos = []
     }
 }
+
+export function createList() {
+    
+}
