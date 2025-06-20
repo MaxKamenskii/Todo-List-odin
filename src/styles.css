@@ -11,6 +11,8 @@
 /* Sidebar styling */
 .sideBar {
     grid-column: 1;
+    display: flex;
+    flex-direction: column;
     background-color: var(--sidebar-background-color);
     height: 100vh;
     padding-left: 15px;
@@ -28,6 +30,10 @@
 .sideBar-el:hover {
     cursor: pointer;
     background-color: var(--sidebar-element-hover-color);
+}
+.sideBarAddButton {
+    margin-top: auto;
+    margin-bottom: 50px;
 }
 /* content styling */
 .contentHeader {

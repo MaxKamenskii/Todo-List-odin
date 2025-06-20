@@ -1,5 +1,6 @@
 console.log("Module loaded");
 export const allToDos = [];
+let numberOfToDos = 0;
 
 export class ToDo {
     constructor(title, description, dueDate, priority, list, done) {
@@ -40,4 +41,10 @@ export class ToDo {
             this.done = false
         }
     }
+}
+
+createNewToDo(title, description, dueDate, priority) {
+    numberOfToDos++;
+    let toDoNumber = numberOfToDos;
+    const 
 }
