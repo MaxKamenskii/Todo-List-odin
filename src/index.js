@@ -1,7 +1,7 @@
 import "./styles.css";
 import {allToDos} from './createToDo.js'
 import {ToDo} from './createToDo.js'
-import {List} from './projects.js'
+import {lists, List, createList} from './projects.js'
 import { generateInbox } from "./inbox.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
@@ -33,4 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('inbox button is working!')
         })
     }
+})
+
+const newListButton = document.getElementById("sideBarAddNewListButton")
+const modalList = document.getElementById("modalAddList")
+const closeModalList = document.getElementById("closeListModal")
+newListButton.addEventListener('click', () => {
+    modalList.showModal()
+})
+closeModalList.addEventListener('click', ()=> {
+    modalList.close()
+})
+
+const addListButton = document.getElementById("addNewListButton")
+
+addListButton.addEventListener('click', ()=> {
+    console.log("addListButton is working")
+    createList()
+    modalList.close()
 })

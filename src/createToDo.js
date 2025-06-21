@@ -43,8 +43,8 @@ export class ToDo {
     }
 }
 
-createNewToDo(title, description, dueDate, priority) {
-    numberOfToDos++;
-    let toDoNumber = numberOfToDos;
-    const 
-}
+// createNewToDo(title, description, dueDate, priority) {
+//     numberOfToDos++;
+//     let toDoNumber = numberOfToDos;
+//     const 
+// }

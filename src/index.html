@@ -12,10 +12,16 @@
             <div class="sideBar-el"><span><img class='sideBarSvg'src="../assets/today.svg"></span>Today</div>
             <div class="sideBar-el"><span><img class='sideBarSvg'src="../assets/trash.svg"></span>Trash</div>
             <div class="sideBar-el">Lists</div>
-            <button class="sideBarAddButton">+ New List</button>
+            <button class="sideBarAddNewListButton" id="sideBarAddNewListButton">+ New List</button>
         </div>
         <div class="content" id="content">
-
+            <dialog class="modalAddList" id="modalAddList">
+                <h2>Add new list</h2>
+                <label for="listName">List Name</label>
+                <input type="text" id="listName" name="listName">
+                <button type="button" id="addNewListButton">Add list</button>
+                <button type="button" id="closeListModal">Close</button>
+            </dialog>
         </div>
     </div>
 </body>
