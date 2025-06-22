@@ -1,7 +1,7 @@
 import "./styles.css";
 import {allToDos} from './createToDo.js'
-import {ToDo} from './createToDo.js'
-import {lists, List, createList} from './projects.js'
+import {ToDo, createNewToDo} from './createToDo.js'
+import {lists, List, createList, generateListPage} from './projects.js'
 import { generateInbox } from "./inbox.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
@@ -35,11 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+
+// Adding new list and new To Do
+// adding new list
 const newListButton = document.getElementById("sideBarAddNewListButton")
 const modalList = document.getElementById("modalAddList")
 const closeModalList = document.getElementById("closeListModal")
+const modalListInput = document.getElementById('listName')
 newListButton.addEventListener('click', () => {
     modalList.showModal()
+    
 })
 closeModalList.addEventListener('click', ()=> {
     modalList.close()
@@ -50,5 +55,38 @@ const addListButton = document.getElementById("addNewListButton")
 addListButton.addEventListener('click', ()=> {
     console.log("addListButton is working")
     createList()
+    modalListInput.value = ""
     modalList.close()
 })
+
+// adding new To Do
+const newToDoButton = document.getElementById("sideBarAddNewToDoButton")
+const modalToDo = document.getElementById("modalAddToDo")
+const closeModalToDO = document.getElementById("closeToDoModal")
+const toDoInputTitle = document.getElementById("toDoTitle")
+const toDoDescription = document.getElementById("toDoDescription")
+
+newToDoButton.addEventListener('click', () => {
+    modalToDo.showModal()
+})
+closeModalToDO.addEventListener('click', () => {
+    modalToDo.close()
+})
+const addToDoButton = document.getElementById("addNewToDoButton")
+
+addToDoButton.addEventListener('click', () => {
+    createNewToDo()
+    toDoInputTitle.value = ""
+    toDoDescription.value = ""
+    modalToDo.close()
+})
+
+
+
+// Generate list page
+document.addEventListener('click', function(event){
+        if(event.target.classList.contains('listElement')) {
+            console.log(event.target.id)
+            generateListPage(event.target.id)
+        }
+    })

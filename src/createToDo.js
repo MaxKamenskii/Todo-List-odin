@@ -1,6 +1,5 @@
 console.log("Module loaded");
 export const allToDos = [];
-let numberOfToDos = 0;
 
 export class ToDo {
     constructor(title, description, dueDate, priority, list, done) {
@@ -43,8 +42,16 @@ export class ToDo {
     }
 }
 
-// createNewToDo(title, description, dueDate, priority) {
-//     numberOfToDos++;
-//     let toDoNumber = numberOfToDos;
-//     const 
-// }
+export function createNewToDo() {
+    let toDoTitle = document.getElementById("toDoTitle").value;
+    let toDoDescription = document.getElementById("toDoDescription").value;
+    
+    if(toDoTitle != ""){
+        let newToDoInstance = new ToDo(toDoTitle, toDoDescription)
+        allToDos.push(newToDoInstance)
+        console.log(allToDos)
+    } else {
+        alert("please provide a title for To Do")
+    }
+    
+}

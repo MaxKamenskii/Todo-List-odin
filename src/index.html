@@ -12,9 +12,12 @@
             <div class="sideBar-el"><span><img class='sideBarSvg'src="../assets/today.svg"></span>Today</div>
             <div class="sideBar-el"><span><img class='sideBarSvg'src="../assets/trash.svg"></span>Trash</div>
             <div class="sideBar-el">Lists</div>
-            <button class="sideBarAddNewListButton" id="sideBarAddNewListButton">+ New List</button>
+            <button class="sideBarButton sideBarAddNewListButton" id="sideBarAddNewListButton">+ New List</button>
+            <button class="sideBarButton sideBarAddNewToDoButton" id="sideBarAddNewToDoButton">+ New To Do</button>
         </div>
         <div class="content" id="content">
+
+        </div>
             <dialog class="modalAddList" id="modalAddList">
                 <h2>Add new list</h2>
                 <label for="listName">List Name</label>
@@ -22,7 +25,15 @@
                 <button type="button" id="addNewListButton">Add list</button>
                 <button type="button" id="closeListModal">Close</button>
             </dialog>
-        </div>
+            <dialog class="modalAddToDo" id="modalAddToDo">
+                <h2>Add new To Do</h2>
+                <label for="toDoTitle">Title</label>
+                <input type="text" id="toDoTitle" name="toDoTitle">
+                <label for="toDoDescription">Description</label>
+                <input type="text" id="toDoDescription" name="toDoDescription">
+                <button type="button" id="addNewToDoButton">Add toDo</button>
+                <button type="button" id="closeToDoModal">Close</button>
+            </dialog>
     </div>
 </body>
 </html>

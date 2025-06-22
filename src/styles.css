@@ -31,10 +31,19 @@
     cursor: pointer;
     background-color: var(--sidebar-element-hover-color);
 }
-.sideBarAddButton {
-    margin-top: auto;
-    margin-bottom: 50px;
+.sideBarButton {
+    margin: 10px;
+    background-color: #6092C9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    font-size: 1.3rem;
 }
+.sideBarButton:hover {
+    scale: 1.1;
+}
+
 /* content styling */
 .contentHeader {
     height: 100px;
