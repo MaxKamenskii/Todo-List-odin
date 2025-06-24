@@ -67,8 +67,39 @@
     margin-top: 10px;
     border-radius: 5px;
     padding: 4px;
+    z-index: 10;
+    display: flex;
+}
+.toDoModal {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+.modalDiv {
+    height: 300px;
+    width: 500px;
+    border: none;
+    border-radius: 5px;
+}
+.modalTitle {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.modalDescription {
+    font-size: 1.5rem;
+    color: gray;
+    margin-bottom: 20px;
 }
 .toDoElement:hover {
     background-color: #6092C9;
     color: white;
+    cursor: pointer;
+}
+.toDoBottomLayer {
+    display: block;
+}
+.toDoCheckbox {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
 }

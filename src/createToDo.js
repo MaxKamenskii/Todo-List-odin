@@ -53,5 +53,4 @@ export function createNewToDo() {
     } else {
         alert("please provide a title for To Do")
     }
-    
 }

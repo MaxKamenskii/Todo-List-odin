@@ -25,10 +25,19 @@ export function generateInbox() {
     for(const toDo of allToDos) {
         if(toDo.list === undefined){
             let toDoElement = document.createElement('div')
+            let toDoTitle = document.createElement('div')
+            let checkBox = document.createElement("INPUT")
+            toDoElement.setAttribute('data-todoelement', toDo.id)
+            checkBox.setAttribute("type", "checkbox")
+            checkBox.classList.add("toDoCheckbox")
+            checkBox.setAttribute('data-checkBoxId', toDo.id)
             toDoElement.classList.add('toDoElement')
-            toDoElement.innerHTML = toDo.title;
+
+            toDoTitle.innerHTML = toDo.title;
             contentBody.append(toDoElement)
+            toDoElement.append(checkBox, toDoTitle)
             console.log(toDo.title)
         }
     }
 }
+
