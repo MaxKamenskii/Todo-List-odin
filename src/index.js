@@ -1,16 +1,19 @@
 import "./styles.css";
-import {allToDos} from './createToDo.js'
-import {ToDo, createNewToDo} from './createToDo.js'
-import {lists, List, createList, generateListPage} from './projects.js'
-import { generateInbox } from "./inbox.js";
+import {allToDos} from './ToDos.js'
+import {ToDo, List, lists} from './ToDos.js'
+// import {lists, List, createList, generateListPage} from './projects.js'
+import { addNewListToSideBar, generateContentPage} from './DOM_lists.js'
+// import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
-import { createToDoModal, saveModalData } from "./toDoModal.js";
+import { createToDoModal, saveModalData, createToDo, populateListOptions } from "./toDoModal.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
 console.log([...allToDos])
 
 const homeList = new List("Home")
 const studyList = new List("study")
+homeList.addToArrayOfLists()
+studyList.addToArrayOfLists()
 const firstToDo = new ToDo("To Do Title", "todo description and notes", "June 18", "high")
 const secondToDo = new ToDo("secondToDo", "todo for testing 2", "June 18", "low")
 const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "June 18", "medium")
@@ -21,6 +24,7 @@ secondToDo.addToAllToDos()
 thirdToDo.addToAllToDos()
 forthToDo.addToAllToDos()
 fifthToDo.addToAllToDos()
+firstToDo.changeTitle("this is a new title for the 1st to do")
 // firstToDo.addToTheList(homeList)
 // secondToDo.addToTheList(homeList)
 
@@ -44,20 +48,18 @@ const newListButton = document.getElementById("sideBarAddNewListButton")
 const modalList = document.getElementById("modalAddList")
 const closeModalList = document.getElementById("closeListModal")
 const modalListInput = document.getElementById('listName')
+// open modal for creating a new list
 newListButton.addEventListener('click', () => {
     modalList.showModal()
-    
 })
 closeModalList.addEventListener('click', ()=> {
     modalList.close()
 })
-
+// confirm new list
 const addListButton = document.getElementById("addNewListButton")
 
 addListButton.addEventListener('click', ()=> {
-    console.log("addListButton is working")
-    createList()
-    modalListInput.value = ""
+    addNewListToSideBar()
     modalList.close()
 })
 
@@ -67,8 +69,10 @@ const modalToDo = document.getElementById("modalAddToDo")
 const closeModalToDO = document.getElementById("closeToDoModal")
 const toDoInputTitle = document.getElementById("toDoTitle")
 const toDoDescription = document.getElementById("toDoDescription")
+const toDoListSelect = document.getElementById("toDoListSelect")
 
 newToDoButton.addEventListener('click', () => {
+    populateListOptions()
     modalToDo.showModal()
 })
 closeModalToDO.addEventListener('click', () => {
@@ -77,9 +81,10 @@ closeModalToDO.addEventListener('click', () => {
 const addToDoButton = document.getElementById("addNewToDoButton")
 
 addToDoButton.addEventListener('click', () => {
-    createNewToDo()
+    createToDo()
     toDoInputTitle.value = ""
     toDoDescription.value = ""
+    toDoListSelect.value = ""
     modalToDo.close()
 })
 
@@ -88,8 +93,8 @@ addToDoButton.addEventListener('click', () => {
 // Generate list page
 document.addEventListener('click', function(event){
         if(event.target.classList.contains('listElement')) {
-            console.log(event.target.id)
-            generateListPage(event.target.id)
+            console.log(`target id ${event.target.dataset.listelementid}`)
+            generateContentPage(event.target.dataset.listelementid)
         }
     })
 

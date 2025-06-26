@@ -1,4 +1,4 @@
-import { ToDo, allToDos } from "./createToDo";
+import { ToDo, allToDos } from "./ToDos";
 
 export function toggleToDo(elId) {
     var theToDoElement;

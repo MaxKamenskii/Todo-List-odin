@@ -1,8 +1,32 @@
-import {allToDos} from './createToDo.js'
-import {ToDo, createNewToDo} from './createToDo.js'
-import {lists, List, createList, generateListPage} from './projects.js'
+import {allToDos} from './ToDos.js'
+import {ToDo, createNewToDo, lists} from './ToDos.js'
+// import {lists, List, createList, generateListPage} from './projects.js'
 
 const container = document.getElementsByClassName("container")
+
+export function createToDo() {
+    let toDoTitle = document.getElementById("toDoTitle").value;
+    let toDoDescription = document.getElementById("toDoDescription").value;
+    let toDoList = document.getElementById("toDoListSelect").value;
+    
+    if(toDoTitle != ""){
+        let newToDoInstance = new ToDo(toDoTitle, toDoDescription, toDoList)
+        allToDos.push(newToDoInstance)
+        console.log(allToDos)
+    } else {
+        alert("please provide a title for To Do")
+    }
+}
+
+export function populateListOptions(){
+    console.log("populateListOption function fired")
+    console.log(`List of lists: ${lists}`)
+    console.log(lists[0].name)
+    for(const listEl of lists){
+        console.log(listEl.name)
+        listEl.populate("toDoListSelect")
+    }
+}
 
 export function createToDoModal(elId){
     const content = document.getElementById("content")
@@ -22,19 +46,22 @@ export function createToDoModal(elId){
     modalDueDate.setAttribute('data-modalDueDateId', elId)
     const modalPriority = document.createElement('div')
     modalPriority.setAttribute('data-modalPriorityId', elId)
+    const modalList = document.createElement('div')
+    modalList.setAttribute('data-modalListId', elId)
     const modalSaveButton = document.createElement('button')
     modalSaveButton.classList.add("modalSaveButton")
     modalSaveButton.setAttribute('data-saveButtonId', elId)
     modalSaveButton.innerHTML = "save"
     content.append(toDoModal)
     toDoModal.appendChild(modalDiv)
-    modalDiv.append(modalTitle, modalDescription, modalDueDate, modalPriority, modalSaveButton)
+    modalDiv.append(modalTitle, modalDescription, modalDueDate, modalPriority, modalList, modalSaveButton)
     for(const toDoInstance of allToDos){
         if(toDoInstance.id === elId){
             modalTitle.innerHTML = toDoInstance.title;
             modalDescription.innerHTML = toDoInstance.description;
             modalDueDate.innerHTML = toDoInstance.dueDate;
-            modalPriority.innerHTML = toDoInstance.priority
+            modalPriority.innerHTML = toDoInstance.priority;
+            modalList.innerHTML = toDoInstance.list;
         }
     }
 }

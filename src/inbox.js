@@ -1,4 +1,4 @@
-import { allToDos } from "./createToDo"
+import { allToDos } from "./ToDos"
 import inboxSVG from "../assets/inbox.svg";
 
 

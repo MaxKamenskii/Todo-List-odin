@@ -1,8 +1,9 @@
 console.log("Module loaded");
 export const allToDos = [];
+export const lists = []
 
 export class ToDo {
-    constructor(title, description, dueDate, priority, list, done) {
+    constructor(title, description, list, dueDate, priority, done) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -40,17 +41,31 @@ export class ToDo {
             this.done = false
         }
     }
+    changeTitle(newTitle) {
+        this.title = newTitle
+    }
+    changeDescription(newDescription) {
+        this.description = newDescription
+    }
+    changeList(newList) {
+        this.list = newList;
+    }
 }
 
-export function createNewToDo() {
-    let toDoTitle = document.getElementById("toDoTitle").value;
-    let toDoDescription = document.getElementById("toDoDescription").value;
-    
-    if(toDoTitle != ""){
-        let newToDoInstance = new ToDo(toDoTitle, toDoDescription)
-        allToDos.push(newToDoInstance)
-        console.log(allToDos)
-    } else {
-        alert("please provide a title for To Do")
+export class List{
+    constructor(name) {
+        this.name = name;
+        this.id = crypto.randomUUID()
+    }
+    addToArrayOfLists(){
+        lists.push(this)
+    }
+    populate(select){
+        // The parameter is the id of the element you want to populate
+        let selectEl = document.getElementById(select)
+        let option = document.createElement('option')
+        option.text = this.name;
+        option.value = this.name.toLowerCase()
+        selectEl.add(option)
     }
 }
