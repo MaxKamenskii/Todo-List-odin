@@ -6,7 +6,7 @@ export function addNewListToSideBar() {
     if(listName != ""){
         console.log(listName)
         let newListInstance = new List(listName);
-        newListInstance.addToTheList()
+        newListInstance.addToArrayOfLists()
         console.log(`lists array ${lists}`)
         const listElement = document.createElement('div');
         listElement.classList.add("sideBar-el")
@@ -29,13 +29,34 @@ export function generateContentPage(elId) {
     const headerBlock = document.createElement('div')
     headerBlock.classList.add('headerBlock')
     const headerText = document.createElement('h1')
+    // a set of todos on content page
+    const contentBody = document.createElement('div')
+    contentBody.classList.add('contentBody')
     
     for(const list of lists){
         if(list.id === listElement.dataset.listelementid){
             headerText.innerHTML = list.name.toUpperCase()
         }
+        for(const toDoItem of allToDos){
+            if(toDoItem.list === list.name){
+                let toDoElement = document.createElement('div')
+                let toDoTitle = document.createElement('div')
+                let checkBox = document.createElement("INPUT")
+                toDoElement.setAttribute('data-todoelement', toDoItem.id)
+                checkBox.setAttribute("type", "checkbox")
+                checkBox.classList.add("toDoCheckbox")
+                checkBox.setAttribute('data-checkBoxId', toDoItem.id)
+                toDoElement.classList.add('toDoElement')
+
+                toDoTitle.innerHTML = toDoItem.title;
+                contentBody.append(toDoElement)
+                toDoElement.append(checkBox, toDoTitle)
+                console.log(toDoItem.title)
+            }
+        }
     }
-    content.append(headerDiv)
+    
+    content.append(headerDiv, contentBody)
     headerDiv.append(headerBlock)
     headerBlock.append(headerText)
 }

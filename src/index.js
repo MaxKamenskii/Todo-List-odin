@@ -72,6 +72,7 @@ const toDoDescription = document.getElementById("toDoDescription")
 const toDoListSelect = document.getElementById("toDoListSelect")
 
 newToDoButton.addEventListener('click', () => {
+    toDoListSelect.innerHTML = ""
     populateListOptions()
     modalToDo.showModal()
 })
