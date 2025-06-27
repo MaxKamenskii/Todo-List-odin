@@ -39,7 +39,7 @@ export function createToDoModal(elId){
     const modalTitle = document.createElement('textarea')
     modalTitle.classList.add('modalTitle')
     modalTitle.setAttribute('data-modalTitleId', elId)
-    const modalDescription = document.createElement('div')
+    const modalDescription = document.createElement('textarea')
     modalDescription.classList.add('modalDescription')
     modalDescription.setAttribute('data-modalDescriptionId', elId)
     const modalDueDate = document.createElement('div')
@@ -70,14 +70,17 @@ export function createToDoModal(elId){
 export function saveModalData(elId) {
 
     const modalTitleElement = document.querySelector(`[data-modalTitleId="${elId}"]`)
+    const modalDescriptionElement = document.querySelector(`[data-modalDescriptionId="${elId}"]`)
     const toDoElement = document.querySelector(`[data-todoelement="${elId}"]`)
     console.log(`Modal title element: ${modalTitleElement}`)
     // console.log(`Modal title is: ${modalTitle.value}`)
     for(const toDoEl of allToDos){
         if(toDoEl.id === elId){
-            console.log(`Title before changing: ${toDoEl.title}`)
+            // console.log(`Title before changing: ${toDoEl.title}`)
             toDoEl.title = modalTitleElement.value
-            console.log(`Title after changing: ${toDoEl.title}`)
+            // console.log(`Title after changing: ${toDoEl.title}`)
+            console.log(toDoEl.description)
+            toDoEl.description = modalDescriptionElement.value
             let childDiv = toDoElement.children[1]
             console.log(childDiv)
             childDiv.innerHTML = toDoEl.title

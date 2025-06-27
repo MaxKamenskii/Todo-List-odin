@@ -133,6 +133,7 @@ document.addEventListener('click', function(event){
         let toDoId = event.target.dataset.savebuttonid
         console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
-        
+        const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
+        theModal.close()
     }
 })
