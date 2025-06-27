@@ -1,9 +1,9 @@
 import {allToDos} from './ToDos.js'
 import {ToDo, createNewToDo, lists} from './ToDos.js'
 // import {lists, List, createList, generateListPage} from './projects.js'
+import { generateContentPage } from './DOM_lists.js';
 
 const container = document.getElementsByClassName("container")
-
 export function createToDo() {
     let toDoTitle = document.getElementById("toDoTitle").value;
     let toDoDescription = document.getElementById("toDoDescription").value;
@@ -11,7 +11,7 @@ export function createToDo() {
     
     if(toDoTitle != ""){
         let newToDoInstance = new ToDo(toDoTitle, toDoDescription, toDoList)
-        allToDos.push(newToDoInstance)
+        newToDoInstance.addToAllToDos()
         console.log(allToDos)
     } else {
         alert("please provide a title for To Do")
@@ -68,7 +68,20 @@ export function createToDoModal(elId){
 
 
 export function saveModalData(elId) {
-    const modalTitle = document.querySelector(`[data-modalTitleId="${elId}"]`)
-    console.log(`Modal title is: ${modalTitle.innerHTML}`)
+
+    const modalTitleElement = document.querySelector(`[data-modalTitleId="${elId}"]`)
+    const toDoElement = document.querySelector(`[data-todoelement="${elId}"]`)
+    console.log(`Modal title element: ${modalTitleElement}`)
+    // console.log(`Modal title is: ${modalTitle.value}`)
+    for(const toDoEl of allToDos){
+        if(toDoEl.id === elId){
+            console.log(`Title before changing: ${toDoEl.title}`)
+            toDoEl.title = modalTitleElement.value
+            console.log(`Title after changing: ${toDoEl.title}`)
+            let childDiv = toDoElement.children[1]
+            console.log(childDiv)
+            childDiv.innerHTML = toDoEl.title
+        }
+    }
 
 }

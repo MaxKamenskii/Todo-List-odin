@@ -25,14 +25,20 @@ export class ToDo {
     addToTheList(listName) {
         if(allToDos.includes(this)) {
         this.list = listName.name;
-        let id = this.id
-        listName.ToDos.push(id)
+        // let id = this.id
+        // listName.ToDos.push(id)
         } else {
             console.log("The ToDo has been deleted")
         }
     }
     setPriority(newPriority){
         this.priority = newPriority
+    }
+    doneStatusDone(){
+        this.done = true
+    }
+    doneStatusNotDone(){
+        this.done = false
     }
     toggleDoneStatus() {
         if(this.done === false){

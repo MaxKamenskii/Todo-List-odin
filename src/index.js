@@ -12,34 +12,39 @@ console.log([...allToDos])
 
 const homeList = new List("Home")
 const studyList = new List("study")
+const inbox = new List("inbox")
+inbox.id = "1";
+inbox.addToArrayOfLists()
+
 homeList.addToArrayOfLists()
 studyList.addToArrayOfLists()
-const firstToDo = new ToDo("To Do Title", "todo description and notes", "June 18", "high")
-const secondToDo = new ToDo("secondToDo", "todo for testing 2", "June 18", "low")
-const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "June 18", "medium")
-const forthToDo = new ToDo("finish to do list", "todo for testing 4", "June 22", "medium")
-const fifthToDo = new ToDo("buy grocceries", "buy milk, chicken, cucumnbers, bread, oil, butter, ice cream", "June 22", "medium")
+const firstToDo = new ToDo("To Do Title", "todo description and notes", "", "June 18", "high")
+const secondToDo = new ToDo("secondToDo", "todo for testing 2", "", "June 18", "low")
+const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "inbox", "June 18", "medium")
+const forthToDo = new ToDo("finish to do list", "todo for testing 4", "inbox", "June 22", "medium")
+const fifthToDo = new ToDo("buy grocceries", "buy milk, chicken, cucumnbers, bread, oil, butter, ice cream", "inbox", "June 22", "medium")
 firstToDo.addToAllToDos()
 secondToDo.addToAllToDos()
 thirdToDo.addToAllToDos()
 forthToDo.addToAllToDos()
 fifthToDo.addToAllToDos()
 firstToDo.changeTitle("this is a new title for the 1st to do")
-// firstToDo.addToTheList(homeList)
-// secondToDo.addToTheList(homeList)
+firstToDo.addToTheList(inbox)
+secondToDo.addToTheList(inbox)
 
 console.log(allToDos)
+console.log(lists)
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const inboxButton = document.getElementById('inboxButton');
-    if(inboxButton) {
-        inboxButton.addEventListener('click', () => {
-            generateInbox()
-            console.log('inbox button is working!')
-        })
-    }
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     const inboxButton = document.getElementById('inboxButton');
+//     if(inboxButton) {
+//         inboxButton.addEventListener('click', () => {
+//             generateInbox()
+//             console.log('inbox button is working!')
+//         })
+//     }
+// })
 
 
 // Adding new list and new To Do
@@ -62,6 +67,15 @@ addListButton.addEventListener('click', ()=> {
     addNewListToSideBar()
     modalList.close()
 })
+
+// Generate list page
+document.addEventListener('click', function(event){
+        if(event.target.classList.contains('listElement')) {
+            console.log(`target id ${event.target.dataset.listelementid}`)
+            generateContentPage(event.target.dataset.listelementid)
+        }
+    })
+
 
 // adding new To Do
 const newToDoButton = document.getElementById("sideBarAddNewToDoButton")
@@ -88,16 +102,6 @@ addToDoButton.addEventListener('click', () => {
     toDoListSelect.value = ""
     modalToDo.close()
 })
-
-
-
-// Generate list page
-document.addEventListener('click', function(event){
-        if(event.target.classList.contains('listElement')) {
-            console.log(`target id ${event.target.dataset.listelementid}`)
-            generateContentPage(event.target.dataset.listelementid)
-        }
-    })
 
 
 // Toggle to do
@@ -129,5 +133,6 @@ document.addEventListener('click', function(event){
         let toDoId = event.target.dataset.savebuttonid
         console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
+        
     }
 })

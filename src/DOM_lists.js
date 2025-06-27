@@ -22,10 +22,11 @@ export function generateContentPage(elId) {
     const content = document.getElementById('content')
     const listElement = document.querySelector(`[data-listElementId="${elId}"]`)
     console.log(`element clicked: ${listElement}`)
-    console.log(listElement)
+    // console.log(listElement)
     content.innerHTML = "";
     const headerDiv = document.createElement('div')
     headerDiv.classList.add('contentHeader')
+    headerDiv.setAttribute('data-listid', elId)
     const headerBlock = document.createElement('div')
     headerBlock.classList.add('headerBlock')
     const headerText = document.createElement('h1')
@@ -36,8 +37,7 @@ export function generateContentPage(elId) {
     for(const list of lists){
         if(list.id === listElement.dataset.listelementid){
             headerText.innerHTML = list.name.toUpperCase()
-        }
-        for(const toDoItem of allToDos){
+            for(const toDoItem of allToDos){
             if(toDoItem.list === list.name){
                 let toDoElement = document.createElement('div')
                 let toDoTitle = document.createElement('div')
@@ -54,6 +54,8 @@ export function generateContentPage(elId) {
                 console.log(toDoItem.title)
             }
         }
+        }
+        
     }
     
     content.append(headerDiv, contentBody)
