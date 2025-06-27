@@ -67,8 +67,12 @@
     margin-top: 10px;
     border-radius: 5px;
     padding: 4px;
-    z-index: 10;
+    z-index: 2;
     display: flex;
+}
+/* fixes the problem with not working event for the parent */
+.toDoElement > div {
+    pointer-events: none;
 }
 .toDoModal {
     border: none;
@@ -84,6 +88,10 @@
 .modalTitle {
     font-size: 2rem;
     margin-bottom: 20px;
+    border: none;
+    resize: none;
+    height: 15%;
+    width: 100%;
 }
 .modalDescription {
     font-size: 1.5rem;
