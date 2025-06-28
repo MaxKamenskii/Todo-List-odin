@@ -1,9 +1,10 @@
 console.log("Module loaded");
 export const allToDos = [];
 export const lists = []
+export const priorities = []
 
 export class ToDo {
-    constructor(title, description, list, dueDate, priority, done) {
+    constructor(title, description, list, priority, dueDate, done) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -68,6 +69,22 @@ export class List{
     }
     populate(select){
         // The parameter is the id of the element you want to populate
+        let selectEl = document.getElementById(select)
+        let option = document.createElement('option')
+        option.text = this.name;
+        option.value = this.name.toLowerCase()
+        selectEl.add(option)
+    }
+}
+
+export class Priority{
+    constructor(name) {
+        this.name = name;
+    }
+    addToPrioritiesList(){
+        priorities.push(this)
+    }
+    populate(select){
         let selectEl = document.getElementById(select)
         let option = document.createElement('option')
         option.text = this.name;

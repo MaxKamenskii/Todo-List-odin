@@ -97,7 +97,8 @@
     font-size: 1.5rem;
     color: gray;
     margin-bottom: 20px;
-    border: none;
+    border: solid 1px gray;
+    border-radius: 10px;
     resize: none;
     height: 25%;
     width: 100%;
@@ -114,4 +115,17 @@
     height: 20px;
     width: 20px;
     margin-right: 10px;
+}
+.modalSaveButton {
+    background-color: #6092C9;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+}
+.modalSaveButton:hover {
+    scale: 1.1;
+    cursor: pointer;
 }

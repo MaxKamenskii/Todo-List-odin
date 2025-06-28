@@ -1,11 +1,11 @@
 import "./styles.css";
 import {allToDos} from './ToDos.js'
-import {ToDo, List, lists} from './ToDos.js'
+import {ToDo, List, lists, Priority, priorities} from './ToDos.js'
 // import {lists, List, createList, generateListPage} from './projects.js'
 import { addNewListToSideBar, generateContentPage} from './DOM_lists.js'
 // import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
-import { createToDoModal, saveModalData, createToDo, populateListOptions } from "./toDoModal.js";
+import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities } from "./toDoModal.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
 console.log([...allToDos])
@@ -15,6 +15,12 @@ const studyList = new List("study")
 const inbox = new List("inbox")
 inbox.id = "1";
 inbox.addToArrayOfLists()
+const low = new Priority("Low")
+const medium = new Priority("Medium");
+const high = new Priority("High")
+low.addToPrioritiesList()
+medium.addToPrioritiesList()
+high.addToPrioritiesList()
 
 homeList.addToArrayOfLists()
 studyList.addToArrayOfLists()
@@ -88,6 +94,7 @@ const toDoListSelect = document.getElementById("toDoListSelect")
 newToDoButton.addEventListener('click', () => {
     toDoListSelect.innerHTML = ""
     populateListOptions()
+    populatePriorities()
     modalToDo.showModal()
 })
 closeModalToDO.addEventListener('click', () => {
@@ -99,7 +106,6 @@ addToDoButton.addEventListener('click', () => {
     createToDo()
     toDoInputTitle.value = ""
     toDoDescription.value = ""
-    toDoListSelect.value = ""
     modalToDo.close()
 })
 

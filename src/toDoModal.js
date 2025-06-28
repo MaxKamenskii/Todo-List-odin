@@ -1,5 +1,5 @@
 import {allToDos} from './ToDos.js'
-import {ToDo, createNewToDo, lists} from './ToDos.js'
+import {ToDo, createNewToDo, lists, priorities} from './ToDos.js'
 // import {lists, List, createList, generateListPage} from './projects.js'
 import { generateContentPage } from './DOM_lists.js';
 
@@ -8,9 +8,11 @@ export function createToDo() {
     let toDoTitle = document.getElementById("toDoTitle").value;
     let toDoDescription = document.getElementById("toDoDescription").value;
     let toDoList = document.getElementById("toDoListSelect").value;
+    let toDoPriority = document.getElementById("toDoPrioritySelect").value;
+    let toDoDueDate = document.getElementById("toDoDueDate").value
     
     if(toDoTitle != ""){
-        let newToDoInstance = new ToDo(toDoTitle, toDoDescription, toDoList)
+        let newToDoInstance = new ToDo(toDoTitle, toDoDescription, toDoList, toDoPriority, toDoDueDate)
         newToDoInstance.addToAllToDos()
         console.log(allToDos)
     } else {
@@ -25,6 +27,11 @@ export function populateListOptions(){
     for(const listEl of lists){
         console.log(listEl.name)
         listEl.populate("toDoListSelect")
+    }
+}
+export function populatePriorities(){
+    for(const priority of priorities){
+        priority.populate("toDoPrioritySelect")
     }
 }
 
@@ -42,6 +49,7 @@ export function createToDoModal(elId){
     const modalDescription = document.createElement('textarea')
     modalDescription.classList.add('modalDescription')
     modalDescription.setAttribute('data-modalDescriptionId', elId)
+    modalDescription.setAttribute('placeholder', 'Notes')
     const modalDueDate = document.createElement('div')
     modalDueDate.setAttribute('data-modalDueDateId', elId)
     const modalPriority = document.createElement('div')
