@@ -74,6 +74,7 @@
 .toDoElement > div {
     pointer-events: none;
 }
+/* Styling to do modal */
 .toDoModal {
     border: none;
     border-radius: 5px;
@@ -129,3 +130,56 @@
     scale: 1.1;
     cursor: pointer;
 }
+/* Styling add to do modal */
+.modalAddToDo{
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 350px;
+}
+.addToDoWrapper {
+    display:flex;
+    flex-direction: column;
+    font-size: 2rem;
+    gap: 10px;
+}
+.addToDoWrapper > input {
+    font-size: 1.5rem;
+}
+.addToDoWrapper > select {
+    font-size: 1.5rem;
+}
+.addToDoHeader {
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+}
+#closeToDoModal {
+    background-color: #6092C9;
+    color: red;
+    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+    border: none;
+}
+#closeToDoModal {
+    /* align-self: center; */
+}
+#closeToDoModal:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+#addNewToDoButton {
+    background-color: #6092C9;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    margin-top: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+#addNewToDoButton:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+

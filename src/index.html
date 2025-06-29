@@ -18,6 +18,9 @@
 
         </div>
             <dialog class="modalAddList" id="modalAddList">
+                <div class="addListWrapper">
+                    
+                </div>
                 <h2>Add new list</h2>
                 <label for="listName">List Name</label>
                 <input type="text" id="listName" name="listName">
@@ -25,8 +28,13 @@
                 <button type="button" id="closeListModal">Close</button>
             </dialog>
             <dialog class="modalAddToDo" id="modalAddToDo">
-                <h2>Add new To Do</h2>
-                <label for="toDoTitle">Title</label>
+                <div class="addToDoHeader">
+                    <h2>Add new To Do</h2>
+                    <button type="button" id="closeToDoModal"><img src="../assets/x-white.svg"></button>
+                </div>
+                <div class="addToDoWrapper">
+                    
+                <label for="toDoTitle">Name</label>
                 <input type="text" id="toDoTitle" name="toDoTitle">
                 <label for="toDoDescription">Description</label>
                 <input type="text" id="toDoDescription" name="toDoDescription">
@@ -45,7 +53,7 @@
                     min="2025-07-01"
                     max="2028-12-01"/>
                 <button type="button" id="addNewToDoButton">Add toDo</button>
-                <button type="button" id="closeToDoModal">Close</button>
+                </div>
             </dialog>
     </div>
 </body>
