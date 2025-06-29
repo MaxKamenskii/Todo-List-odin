@@ -19,13 +19,15 @@
         </div>
             <dialog class="modalAddList" id="modalAddList">
                 <div class="addListWrapper">
+                    <div class="addListHeader">
+                        <h2>Add New List</h2>
+                        <button type="button" id="closeListModal"><img src="../assets/x-white.svg"></button>
+                    </div>
                     
+                    <label for="listName">List Name</label>
+                    <input type="text" id="listName" name="listName">
+                    <button type="button" id="addNewListButton">Add list</button>
                 </div>
-                <h2>Add new list</h2>
-                <label for="listName">List Name</label>
-                <input type="text" id="listName" name="listName">
-                <button type="button" id="addNewListButton">Add list</button>
-                <button type="button" id="closeListModal">Close</button>
             </dialog>
             <dialog class="modalAddToDo" id="modalAddToDo">
                 <div class="addToDoHeader">
