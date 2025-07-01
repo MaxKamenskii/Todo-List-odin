@@ -1,4 +1,4 @@
-export const lists = []
+/* export const lists = []
 
 export class List{
     constructor(name) {
@@ -47,3 +47,4 @@ export function generateListPage(listId) {
     headerDiv.append(headerBlock)
     headerBlock.append(headerText)
 }
+*/

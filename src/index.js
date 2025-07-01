@@ -2,7 +2,7 @@ import "./styles.css";
 import {allToDos} from './ToDos.js'
 import {ToDo, List, lists, Priority, priorities} from './ToDos.js'
 // import {lists, List, createList, generateListPage} from './projects.js'
-import { addNewListToSideBar, generateContentPage} from './DOM_lists.js'
+import { addNewListToSideBar, generateContentPage, addListsToSideBar} from './DOM_lists.js'
 // import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
 import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities } from "./toDoModal.js";
@@ -74,6 +74,7 @@ addListButton.addEventListener('click', ()=> {
     modalList.close()
 })
 
+// addListsToSideBar()
 // Generate list page
 document.addEventListener('click', function(event){
         if(event.target.classList.contains('listElement')) {

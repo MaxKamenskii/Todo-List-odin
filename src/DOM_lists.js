@@ -1,6 +1,18 @@
 import { allToDos, ToDo, createNewToDo, lists, List } from "./ToDos";
 
-
+const sideBarLists = document.getElementById('sideBarLists')
+export function addListsToSideBar(){
+    for(const list in lists){
+        // const sideBarLists = document.getElementById("sideBarLists")
+        const listElement = document.createElement('div');
+        listElement.classList.add("sideBar-el")
+        listElement.classList.add("listElement")
+        listElement.setAttribute("data-listElementId", `${list.id}`)
+        listElement.innerHTML = list.name;
+        sideBarLists.innerHTML = ""
+        sideBarLists.append(listElement)
+    }
+}
 export function addNewListToSideBar() {
     let listName = document.getElementById("listName").value;  
     if(listName != ""){
