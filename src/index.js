@@ -24,10 +24,10 @@ high.addToPrioritiesList()
 
 homeList.addToArrayOfLists()
 studyList.addToArrayOfLists()
-const firstToDo = new ToDo("To Do Title", "todo description and notes", "", "June 18", "high")
-const secondToDo = new ToDo("secondToDo", "todo for testing 2", "", "June 18", "low")
-const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "inbox", "June 18", "medium")
-const forthToDo = new ToDo("finish to do list", "todo for testing 4", "inbox", "June 22", "medium")
+const firstToDo = new ToDo("To Do Title", "todo description and notes", "", "high", "June 18")
+const secondToDo = new ToDo("secondToDo", "todo for testing 2", "", "low", "June 18")
+const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "inbox", "medium", "June 18")
+const forthToDo = new ToDo("finish to do list", "todo for testing 4", "inbox", "medium", "June 22")
 const fifthToDo = new ToDo("buy grocceries", "buy milk, chicken, cucumnbers, bread, oil, butter, ice cream", "inbox", "June 22", "medium")
 firstToDo.addToAllToDos()
 secondToDo.addToAllToDos()
@@ -90,9 +90,11 @@ const closeModalToDO = document.getElementById("closeToDoModal")
 const toDoInputTitle = document.getElementById("toDoTitle")
 const toDoDescription = document.getElementById("toDoDescription")
 const toDoListSelect = document.getElementById("toDoListSelect")
+const toDoPrioritySelect = document.getElementById("toDoPrioritySelect")
 
 newToDoButton.addEventListener('click', () => {
     toDoListSelect.innerHTML = ""
+    toDoPrioritySelect.innerHTML = ""
     populateListOptions()
     populatePriorities()
     modalToDo.showModal()

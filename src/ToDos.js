@@ -91,4 +91,13 @@ export class Priority{
         option.value = this.name.toLowerCase()
         selectEl.add(option)
     }
+    populateModal(selectElement){
+        let option = document.createElement('option')
+        console.log("Populating modal")
+        console.log(option)
+        option.text = this.name;
+        option.value = this.name.toLowerCase()
+        selectElement.add(option)
+        console.log(selectElement)
+    }
 }
