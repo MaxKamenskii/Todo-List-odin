@@ -1,31 +1,34 @@
 import { allToDos, ToDo, createNewToDo, lists, List } from "./ToDos";
 
-const sideBarLists = document.getElementById('sideBarLists')
+// const sideBarLists = document.getElementById('sideBarLists')
 export function addListsToSideBar(){
-    for(const list in lists){
-        // const sideBarLists = document.getElementById("sideBarLists")
-        const listElement = document.createElement('div');
-        listElement.classList.add("sideBar-el")
-        listElement.classList.add("listElement")
-        listElement.setAttribute("data-listElementId", `${list.id}`)
-        listElement.innerHTML = list.name;
-        sideBarLists.innerHTML = ""
-        sideBarLists.append(listElement)
+    sideBarLists.innerHTML = ""
+    console.log(`Lists array is ${lists}`)
+    for(const listEl of lists){
+        if(listEl.name != "inbox"){
+            const listElement = document.createElement('div');
+            listElement.classList.add("sideBar-el")
+            listElement.classList.add("listElement")
+            listElement.setAttribute("data-listElementId", `${listEl.id}`)
+            console.log(`List name is: ${listEl.name}`)
+            listElement.innerHTML = listEl.name;
+            sideBarLists.append(listElement)
+        }
     }
 }
-export function addNewListToSideBar() {
+export function createNewList() {
     let listName = document.getElementById("listName").value;  
     if(listName != ""){
         console.log(listName)
         let newListInstance = new List(listName);
         newListInstance.addToArrayOfLists()
         console.log(`lists array ${lists}`)
-        const listElement = document.createElement('div');
-        listElement.classList.add("sideBar-el")
-        listElement.classList.add("listElement")
-        listElement.setAttribute("data-listElementId", `${newListInstance.id}`)
-        listElement.innerHTML = newListInstance.name;
-        sideBar.append(listElement)
+        // const listElement = document.createElement('div');
+        // listElement.classList.add("sideBar-el")
+        // listElement.classList.add("listElement")
+        // listElement.setAttribute("data-listElementId", `${newListInstance.id}`)
+        // listElement.innerHTML = newListInstance.name;
+        // sideBarLists.append(listElement)
     } else {
         alert("please provide list name")
     }
