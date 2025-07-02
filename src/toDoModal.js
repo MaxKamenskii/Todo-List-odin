@@ -54,7 +54,7 @@ export function createToDoModal(elId){
     modalDueDate.setAttribute('data-modalDueDateId', elId)
     const modalPriority = document.createElement('select')
     modalPriority.setAttribute('data-modalPriorityId', elId)
-    const modalList = document.createElement('div')
+    const modalList = document.createElement('select')
     modalList.setAttribute('data-modalListId', elId)
     const modalSaveButton = document.createElement('button')
     modalSaveButton.classList.add("modalSaveButton")
@@ -72,18 +72,30 @@ export function createToDoModal(elId){
             modalList.innerHTML = toDoInstance.list;
         }
     }
-    const predetermendOption = modalPriority.innerHTML
+    const predetermendPriority = modalPriority.innerHTML
     for(const priority of priorities){
         let option = document.createElement('option')
         console.log("Populating modal")
         console.log(option)
         option.text = priority.name;
         option.value = priority.name.toLowerCase()
-        console.log(`Predetermened option is:${predetermendOption}`)
-        if(option.value === predetermendOption){
+        console.log(`Predetermened option is:${predetermendPriority}`)
+        if(option.value === predetermendPriority.toLocaleLowerCase()){
             option.setAttribute('selected', 'selected')
         }
         modalPriority.appendChild(option)
+    }
+    const predetermendList = modalList.innerHTML
+    for(const list of lists){
+        let option = document.createElement('option')
+        console.log("Populating list option")
+        option.text = list.name
+        option.value = list.name.toLowerCase()
+        console.log(`Predetermend option is ${predetermendList}`)
+        if(option.value === predetermendList.toLocaleLowerCase()){
+            option.setAttribute('selected', 'selected')
+        }
+        modalList.appendChild(option)
     }
 }
 
@@ -95,12 +107,14 @@ export function saveModalData(elId) {
     const toDoElement = document.querySelector(`[data-todoelement="${elId}"]`)
     console.log(`Modal title element: ${modalTitleElement}`)
     const modalPriorityElement = document.querySelector(`[data-modalPriorityId="${elId}"]`)
+    const modalListElement = document.querySelector(`[data-modalListId="${elId}"]`)
     // console.log(`Modal title is: ${modalTitle.value}`)
     for(const toDoEl of allToDos){
         if(toDoEl.id === elId){
             // console.log(`Title before changing: ${toDoEl.title}`)
             toDoEl.title = modalTitleElement.value
             toDoEl.priority = modalPriorityElement.value
+            toDoEl.list = modalListElement.value
             // console.log(`Title after changing: ${toDoEl.title}`)
             console.log(toDoEl.description)
             toDoEl.description = modalDescriptionElement.value

@@ -53,7 +53,7 @@ export function generateContentPage(elId) {
         if(list.id === listElement.dataset.listelementid){
             headerText.innerHTML = list.name.toUpperCase()
             for(const toDoItem of allToDos){
-            if(toDoItem.list === list.name){
+            if(toDoItem.list.toLowerCase() === list.name.toLowerCase()){
                 let toDoElement = document.createElement('div')
                 let toDoTitle = document.createElement('div')
                 let checkBox = document.createElement("INPUT")

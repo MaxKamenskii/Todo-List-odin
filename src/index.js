@@ -11,7 +11,7 @@ console.log(JSON.parse(JSON.stringify(allToDos)));
 console.log([...allToDos])
 
 const homeList = new List("Home")
-const studyList = new List("study")
+const studyList = new List("Study")
 const inbox = new List("inbox")
 inbox.id = "1";
 inbox.addToArrayOfLists()
@@ -24,19 +24,25 @@ high.addToPrioritiesList()
 
 homeList.addToArrayOfLists()
 studyList.addToArrayOfLists()
-const firstToDo = new ToDo("To Do Title", "todo description and notes", "", "high", "June 18")
-const secondToDo = new ToDo("secondToDo", "todo for testing 2", "", "low", "June 18")
-const thirdToDo = new ToDo("thirdToDo", "todo for testing 3", "inbox", "medium", "June 18")
-const forthToDo = new ToDo("finish to do list", "todo for testing 4", "inbox", "medium", "June 22")
-const fifthToDo = new ToDo("buy grocceries", "buy milk, chicken, cucumnbers, bread, oil, butter, ice cream", "inbox", "June 22", "medium")
+const firstToDo = new ToDo("Do Laundry", "Wash darks and whites separately. Don’t forget to fold and put away.", "", "high", "June 18")
+const secondToDo = new ToDo("Clean the desk", "take out all the trash from desk like papers, docs, coffe cup", "inbox", "low", "June 18")
+const thirdToDo = new ToDo("Water the plants", "Focus on the ones by the window—soil's looking dry.", "inbox", "medium", "June 18")
+const forthToDo = new ToDo("Finish CS50 Week 5 Lecture", "take notes in Notion", "inbox", "medium", "June 22")
+const fifthToDo = new ToDo("Buy grocceries", "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", "inbox", "June 22", "medium")
+const sixthToDo = new ToDo("Do flashcards", "go through the list of 50 words", "inbox", "June 22", "medium")
+const seventhToDo = new ToDo("Debug the To Do list app", "oh there is so much to debug", "inbox", "June 22", "medium")
+
 firstToDo.addToAllToDos()
 secondToDo.addToAllToDos()
 thirdToDo.addToAllToDos()
 forthToDo.addToAllToDos()
 fifthToDo.addToAllToDos()
-firstToDo.changeTitle("this is a new title for the 1st to do")
-firstToDo.addToTheList(inbox)
-secondToDo.addToTheList(inbox)
+sixthToDo.addToAllToDos()
+seventhToDo.addToAllToDos()
+firstToDo.addToTheList(homeList)
+fifthToDo.addToTheList(homeList)
+sixthToDo.addToTheList(studyList)
+
 
 console.log(allToDos)
 console.log(lists)
@@ -144,6 +150,12 @@ document.addEventListener('click', function(event){
         console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
+        let header = document.getElementsByClassName('contentHeader')
+        // let headerId = header.dataset.listid
+        console.log(header)
+        // const headerId = header.dataset.listid
+        // console.log(`Header ID is: ${header.dataset.listid}`)
+        // generateContentPage()
         theModal.close()
     }
 })
