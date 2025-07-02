@@ -31,6 +31,9 @@
     cursor: pointer;
     background-color: var(--sidebar-element-hover-color);
 }
+.sideBar > button:hover {
+    cursor: pointer;
+}
 .sideBarButton {
     margin: 10px;
     background-color: #6092C9;
