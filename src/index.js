@@ -150,12 +150,9 @@ document.addEventListener('click', function(event){
         console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
-        let header = document.getElementsByClassName('contentHeader')
-        // let headerId = header.dataset.listid
-        console.log(header)
-        // const headerId = header.dataset.listid
-        // console.log(`Header ID is: ${header.dataset.listid}`)
-        // generateContentPage()
+        let header = document.querySelector('.contentHeader')
+        let headerId = header.dataset.listid
+        generateContentPage(headerId)
         theModal.close()
     }
 })
