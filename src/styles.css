@@ -73,6 +73,9 @@
     z-index: 2;
     display: flex;
 }
+.toDoDeleteButton {
+    margin-left: auto;
+}
 /* fixes the problem with not working event for the parent */
 .toDoElement > div {
     pointer-events: none;
@@ -106,6 +109,9 @@
     resize: none;
     height: 25%;
     width: 100%;
+}
+.modalDescription:focus {
+    color: black;
 }
 .toDoElement:hover {
     background-color: #6092C9;

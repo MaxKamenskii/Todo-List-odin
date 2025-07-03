@@ -50,7 +50,8 @@ export function createToDoModal(elId){
     modalDescription.classList.add('modalDescription')
     modalDescription.setAttribute('data-modalDescriptionId', elId)
     modalDescription.setAttribute('placeholder', 'Notes')
-    const modalDueDate = document.createElement('div')
+    const modalDueDate = document.createElement('input')
+    modalDueDate.setAttribute('type', 'date')
     modalDueDate.setAttribute('data-modalDueDateId', elId)
     const modalPriority = document.createElement('select')
     modalPriority.setAttribute('data-modalPriorityId', elId)
@@ -68,6 +69,7 @@ export function createToDoModal(elId){
             modalTitle.innerHTML = toDoInstance.title;
             modalDescription.innerHTML = toDoInstance.description;
             modalDueDate.innerHTML = toDoInstance.dueDate;
+
             modalPriority.innerHTML = toDoInstance.priority;
             modalList.innerHTML = toDoInstance.list;
         }

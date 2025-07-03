@@ -28,9 +28,9 @@ const firstToDo = new ToDo("Do Laundry", "Wash darks and whites separately. Donâ
 const secondToDo = new ToDo("Clean the desk", "take out all the trash from desk like papers, docs, coffe cup", "inbox", "low", "June 18")
 const thirdToDo = new ToDo("Water the plants", "Focus on the ones by the windowâ€”soil's looking dry.", "inbox", "medium", "June 18")
 const forthToDo = new ToDo("Finish CS50 Week 5 Lecture", "take notes in Notion", "inbox", "medium", "June 22")
-const fifthToDo = new ToDo("Buy grocceries", "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", "inbox", "June 22", "medium")
-const sixthToDo = new ToDo("Do flashcards", "go through the list of 50 words", "inbox", "June 22", "medium")
-const seventhToDo = new ToDo("Debug the To Do list app", "oh there is so much to debug", "inbox", "June 22", "medium")
+const fifthToDo = new ToDo("Buy grocceries", "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", "inbox", "medium", "June 22")
+const sixthToDo = new ToDo("Do flashcards", "go through the list of 50 words", "inbox", "medium", "June 22")
+const seventhToDo = new ToDo("Debug the To Do list app", "oh there is so much to debug", "inbox", "medium", "June 22")
 
 firstToDo.addToAllToDos()
 secondToDo.addToAllToDos()
@@ -42,6 +42,8 @@ seventhToDo.addToAllToDos()
 firstToDo.addToTheList(homeList)
 fifthToDo.addToTheList(homeList)
 sixthToDo.addToTheList(studyList)
+
+// firstToDo.deleteToDo()
 
 
 console.log(allToDos)
@@ -154,5 +156,24 @@ document.addEventListener('click', function(event){
         let headerId = header.dataset.listid
         generateContentPage(headerId)
         theModal.close()
+    }
+})
+
+
+// Delete to do
+
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('toDoDeleteButton')){
+        let toDoid = event.target.dataset.tododeleteid
+        // console.log(toDoid)
+        for(const toDo of allToDos){
+            if(toDo.id === toDoid){
+                console.log(toDo.title)
+                toDo.deleteToDo()
+                let header = document.querySelector('.contentHeader')
+            let headerId = header.dataset.listid
+            generateContentPage(headerId)
+            }
+        }
     }
 })

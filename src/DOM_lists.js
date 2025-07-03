@@ -57,6 +57,10 @@ export function generateContentPage(elId) {
                 let toDoElement = document.createElement('div')
                 let toDoTitle = document.createElement('div')
                 let checkBox = document.createElement("INPUT")
+                let toDoDeleteButton = document.createElement('button')
+                toDoDeleteButton.setAttribute('data-tododeleteid', toDoItem.id)
+                toDoDeleteButton.classList.add('toDoDeleteButton')
+                toDoDeleteButton.innerHTML = ('Delete')
                 toDoElement.setAttribute('data-todoelement', toDoItem.id)
                 checkBox.setAttribute("type", "checkbox")
                 checkBox.classList.add("toDoCheckbox")
@@ -65,7 +69,7 @@ export function generateContentPage(elId) {
 
                 toDoTitle.innerHTML = toDoItem.title;
                 contentBody.append(toDoElement)
-                toDoElement.append(checkBox, toDoTitle)
+                toDoElement.append(checkBox, toDoTitle, toDoDeleteButton)
                 console.log(toDoItem.title)
             }
         }
