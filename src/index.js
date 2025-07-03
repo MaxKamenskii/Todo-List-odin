@@ -118,6 +118,9 @@ addToDoButton.addEventListener('click', () => {
     createToDo()
     toDoInputTitle.value = ""
     toDoDescription.value = ""
+    let header = document.querySelector('.contentHeader')
+    let headerId = header.dataset.listid
+    generateContentPage(headerId)
     modalToDo.close()
 })
 
@@ -171,8 +174,8 @@ document.addEventListener('click', function(event){
                 console.log(toDo.title)
                 toDo.deleteToDo()
                 let header = document.querySelector('.contentHeader')
-            let headerId = header.dataset.listid
-            generateContentPage(headerId)
+                let headerId = header.dataset.listid
+                generateContentPage(headerId)
             }
         }
     }

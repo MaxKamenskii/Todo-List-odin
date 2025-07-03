@@ -69,7 +69,7 @@ export function createToDoModal(elId){
             modalTitle.innerHTML = toDoInstance.title;
             modalDescription.innerHTML = toDoInstance.description;
             modalDueDate.innerHTML = toDoInstance.dueDate;
-
+            modalDueDate.value = toDoInstance.dueDate;
             modalPriority.innerHTML = toDoInstance.priority;
             modalList.innerHTML = toDoInstance.list;
         }
@@ -110,6 +110,7 @@ export function saveModalData(elId) {
     console.log(`Modal title element: ${modalTitleElement}`)
     const modalPriorityElement = document.querySelector(`[data-modalPriorityId="${elId}"]`)
     const modalListElement = document.querySelector(`[data-modalListId="${elId}"]`)
+    const modalDateElement = document.querySelector(`[data-modalDueDateId="${elId}"]`)
     // console.log(`Modal title is: ${modalTitle.value}`)
     for(const toDoEl of allToDos){
         if(toDoEl.id === elId){
@@ -117,6 +118,7 @@ export function saveModalData(elId) {
             toDoEl.title = modalTitleElement.value
             toDoEl.priority = modalPriorityElement.value
             toDoEl.list = modalListElement.value
+            toDoEl.dueDate = modalDateElement.value
             // console.log(`Title after changing: ${toDoEl.title}`)
             console.log(toDoEl.description)
             toDoEl.description = modalDescriptionElement.value
