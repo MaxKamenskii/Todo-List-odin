@@ -61,9 +61,27 @@ export function createToDoModal(elId){
     modalSaveButton.classList.add("modalSaveButton")
     modalSaveButton.setAttribute('data-saveButtonId', elId)
     modalSaveButton.innerHTML = "save"
+    const inputDiv = document.createElement('div')
+    inputDiv.classList.add('inputDiv')
+    const dateDiv = document.createElement('div')
+    dateDiv.classList.add('inputDivElement')
+    const dateLabel = document.createElement('div')
+    dateLabel.innerHTML = "Date"
+    dateDiv.append(dateLabel, modalDueDate)
+    const listDiv = document.createElement('div')
+    const listLabel = document.createElement('div')
+    listLabel.innerHTML = "List"
+    listDiv.append(listLabel, modalList)
+    listDiv.classList.add('inputDivElement')
+    const priorityDiv = document.createElement('div')
+    const priorityLabel = document.createElement('div')
+    priorityLabel.innerHTML = "Priority"
+    priorityDiv.classList.add('inputDivElement')
+    priorityDiv.append(priorityLabel, modalPriority)
+    inputDiv.append(dateDiv, listDiv, priorityDiv)
     content.append(toDoModal)
     toDoModal.appendChild(modalDiv)
-    modalDiv.append(modalTitle, modalDescription, modalDueDate, modalPriority, modalList, modalSaveButton)
+    modalDiv.append(modalTitle, modalDescription, inputDiv, modalSaveButton)
     for(const toDoInstance of allToDos){
         if(toDoInstance.id === elId){
             modalTitle.innerHTML = toDoInstance.title;

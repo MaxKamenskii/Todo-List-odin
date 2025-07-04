@@ -134,10 +134,16 @@
     border: none;
     border-radius: 10px;
     font-size: large;
+    margin-top: 10px;
 }
 .modalSaveButton:hover {
     scale: 1.1;
     cursor: pointer;
+}
+
+.inputDivElement {
+    display:flex;
+    gap: 10px;
 }
 /* Styling add to do modal */
 .modalAddToDo{
