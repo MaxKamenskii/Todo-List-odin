@@ -49,17 +49,7 @@ sixthToDo.addToTheList(studyList)
 console.log(allToDos)
 console.log(lists)
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const inboxButton = document.getElementById('inboxButton');
-//     if(inboxButton) {
-//         inboxButton.addEventListener('click', () => {
-//             generateInbox()
-//             console.log('inbox button is working!')
-//         })
-//     }
-// })
-
+generateContentPage(1)
 
 // Adding new list and new To Do
 // adding new list
