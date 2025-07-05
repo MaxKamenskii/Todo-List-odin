@@ -25,8 +25,11 @@ export function populateListOptions(){
     console.log(`List of lists: ${lists}`)
     console.log(lists[0].name)
     for(const listEl of lists){
-        console.log(listEl.name)
-        listEl.populate("toDoListSelect")
+        if(listEl.id != 2){
+            console.log(listEl.name)
+            listEl.populate("toDoListSelect")
+        }
+        
     }
 }
 export function populatePriorities(){
@@ -60,7 +63,17 @@ export function createToDoModal(elId){
     const modalSaveButton = document.createElement('button')
     modalSaveButton.classList.add("modalSaveButton")
     modalSaveButton.setAttribute('data-saveButtonId', elId)
-    modalSaveButton.innerHTML = "save"
+    modalSaveButton.innerHTML = "Save"
+    const header = document.querySelector(".contentHeader")
+    if(header.dataset.listid = 2){
+        modalSaveButton.innerHTML = "Restore"
+    }
+    const closeModalButton = document.createElement('button')
+    closeModalButton.classList.add("modalCloseButton")
+    closeModalButton.setAttribute('data-closeButtonId', elId)
+    closeModalButton.innerHTML = "Close"
+    const modalButtonsDiv = document.createElement('div')
+    modalButtonsDiv.classList.add('modalButtonsDiv')
     const inputDiv = document.createElement('div')
     inputDiv.classList.add('inputDiv')
     const dateDiv = document.createElement('div')
@@ -81,7 +94,8 @@ export function createToDoModal(elId){
     inputDiv.append(dateDiv, listDiv, priorityDiv)
     content.append(toDoModal)
     toDoModal.appendChild(modalDiv)
-    modalDiv.append(modalTitle, modalDescription, inputDiv, modalSaveButton)
+    modalButtonsDiv.append(modalSaveButton, closeModalButton)
+    modalDiv.append(modalTitle, modalDescription, inputDiv, modalButtonsDiv)
     for(const toDoInstance of allToDos){
         if(toDoInstance.id === elId){
             modalTitle.innerHTML = toDoInstance.title;
@@ -107,15 +121,17 @@ export function createToDoModal(elId){
     }
     const predetermendList = modalList.innerHTML
     for(const list of lists){
-        let option = document.createElement('option')
-        console.log("Populating list option")
-        option.text = list.name
-        option.value = list.name.toLowerCase()
-        console.log(`Predetermend option is ${predetermendList}`)
-        if(option.value === predetermendList.toLocaleLowerCase()){
-            option.setAttribute('selected', 'selected')
+        if(list.id != "2"){
+            let option = document.createElement('option')
+            console.log("Populating list option")
+            option.text = list.name
+            option.value = list.name.toLowerCase()
+            console.log(`Predetermend option is ${predetermendList}`)
+            if(option.value === predetermendList.toLocaleLowerCase()){
+                option.setAttribute('selected', 'selected')
+            }
+            modalList.appendChild(option)
         }
-        modalList.appendChild(option)
     }
 }
 
@@ -146,4 +162,24 @@ export function saveModalData(elId) {
         }
     }
 
+}
+
+export function closeWithoutSaving(elId) {
+    const modalTitleElement = document.querySelector(`[data-modalTitleId="${elId}"]`)
+    const modalDescriptionElement = document.querySelector(`[data-modalDescriptionId="${elId}"]`)
+    const toDoElement = document.querySelector(`[data-todoelement="${elId}"]`)
+    console.log(`Modal title element: ${modalTitleElement}`)
+    const modalPriorityElement = document.querySelector(`[data-modalPriorityId="${elId}"]`)
+    const modalListElement = document.querySelector(`[data-modalListId="${elId}"]`)
+    const modalDateElement = document.querySelector(`[data-modalDueDateId="${elId}"]`)
+    for(const toDoEl of allToDos){
+        if(toDoEl.id === elId){
+            modalTitleElement.value = toDoEl.title
+            modalListElement.value = toDoEl.list
+            modalDateElement.value = toDoEl.dueDate
+            modalDescriptionElement.value = toDoEl.description
+            let childDiv = toDoElement.children[1]
+            childDiv.innerHTML = toDoEl.title
+        }
+    }
 }

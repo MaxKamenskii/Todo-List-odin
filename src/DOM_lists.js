@@ -5,7 +5,7 @@ export function addListsToSideBar(){
     sideBarLists.innerHTML = ""
     console.log(`Lists array is ${lists}`)
     for(const listEl of lists){
-        if(listEl.name != "inbox"){
+        if(listEl.id != "1" && listEl.id != "2"){
             const listElement = document.createElement('div');
             listElement.classList.add("sideBar-el")
             listElement.classList.add("listElement")
@@ -65,12 +65,16 @@ export function generateContentPage(elId) {
                 checkBox.setAttribute("type", "checkbox")
                 checkBox.classList.add("toDoCheckbox")
                 checkBox.setAttribute('data-checkBoxId', toDoItem.id)
+                if(toDoItem.done === true){
+                    console.log(`${toDoItem.title } element is checked`)
+                    checkBox.checked = true;
+                }
                 toDoElement.classList.add('toDoElement')
 
                 toDoTitle.innerHTML = toDoItem.title;
                 contentBody.append(toDoElement)
                 toDoElement.append(checkBox, toDoTitle, toDoDeleteButton)
-                console.log(toDoItem.title)
+                // console.log(toDoItem.title)
             }
         }
         }

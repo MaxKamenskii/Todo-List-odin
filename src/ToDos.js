@@ -18,10 +18,11 @@ export class ToDo {
         allToDos.push(this)
     }
     deleteToDo(){
-        const indexOfToDo = allToDos.findIndex(todo => todo.title === this.title)
-        if (indexOfToDo !== -1) {
-        allToDos.splice(indexOfToDo, 1)
-        }
+        // const indexOfToDo = allToDos.findIndex(todo => todo.title === this.title)
+        // if (indexOfToDo !== -1) {
+        // allToDos.splice(indexOfToDo, 1)
+        // }
+        this.list = "trash"
     }
     addToTheList(listName) {
         if(allToDos.includes(this)) {

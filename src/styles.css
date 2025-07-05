@@ -140,6 +140,24 @@
     scale: 1.1;
     cursor: pointer;
 }
+.modalCloseButton {
+    background-color: #6092C9;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+    margin-top: 10px;
+}
+.modalCloseButton:hover {
+    scale: 1.1;
+    cursor: pointer;
+}
+.modalButtonsDiv {
+    display: flex;
+    justify-content: space-around;
+}
 
 .inputDivElement {
     display:flex;

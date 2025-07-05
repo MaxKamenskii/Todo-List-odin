@@ -5,7 +5,7 @@ import {ToDo, List, lists, Priority, priorities} from './ToDos.js'
 import { generateContentPage, addListsToSideBar, createNewList} from './DOM_lists.js'
 // import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
-import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities } from "./toDoModal.js";
+import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities, closeWithoutSaving } from "./toDoModal.js";
 
 console.log(JSON.parse(JSON.stringify(allToDos)));
 console.log([...allToDos])
@@ -13,7 +13,10 @@ console.log([...allToDos])
 const homeList = new List("Home")
 const studyList = new List("Study")
 const inbox = new List("inbox")
+const trash = new List("trash")
 inbox.id = "1";
+trash.id = "2";
+trash.addToArrayOfLists()
 inbox.addToArrayOfLists()
 const low = new Priority("Low")
 const medium = new Priority("Medium");
@@ -42,6 +45,7 @@ seventhToDo.addToAllToDos()
 firstToDo.addToTheList(homeList)
 fifthToDo.addToTheList(homeList)
 sixthToDo.addToTheList(studyList)
+secondToDo.done = true;
 
 // firstToDo.deleteToDo()
 
@@ -139,6 +143,7 @@ document.addEventListener('click', function(event){
     }
 })
 
+// Save to do
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('modalSaveButton')){
         let toDoId = event.target.dataset.savebuttonid
@@ -151,7 +156,15 @@ document.addEventListener('click', function(event){
         theModal.close()
     }
 })
-
+// Close to do
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('modalCloseButton')){
+        let toDoId = event.target.dataset.closebuttonid
+        const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
+        closeWithoutSaving(toDoId)
+        theModal.close()
+    }
+})
 
 // Delete to do
 
