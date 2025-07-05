@@ -73,7 +73,11 @@ export function generateContentPage(elId) {
 
                 toDoTitle.innerHTML = toDoItem.title;
                 contentBody.append(toDoElement)
-                toDoElement.append(checkBox, toDoTitle, toDoDeleteButton)
+                if(list.id != 2){
+                    toDoElement.append(checkBox, toDoTitle, toDoDeleteButton)
+                } else {
+                    toDoElement.append(checkBox, toDoTitle)
+                }
                 // console.log(toDoItem.title)
             }
         }
