@@ -65,8 +65,12 @@ export function createToDoModal(elId){
     modalSaveButton.setAttribute('data-saveButtonId', elId)
     modalSaveButton.innerHTML = "Save"
     const header = document.querySelector(".contentHeader")
-    if(header.dataset.listid = 2){
+    let headerId = header.dataset.listid
+    if(headerId === "2"){
+        console.log(`Header dataset ${header.dataset.listid}`)
         modalSaveButton.innerHTML = "Restore"
+    } else {
+        modalSaveButton.innerHTML = "Save"
     }
     const closeModalButton = document.createElement('button')
     closeModalButton.classList.add("modalCloseButton")
