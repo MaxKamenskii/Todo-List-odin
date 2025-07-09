@@ -70,9 +70,7 @@ newToDoButton.addEventListener('click', () => {
     populatePriorities()
     modalToDo.showModal()
     const select = document.getElementById('toDoListSelect')
-    console.log(select)
     for(let child of select.options){
-        console.log(child.tagName)
         if(child.textContent.toLowerCase() == headerText.toLowerCase()){
             child.setAttribute('selected', 'selected')
         }
