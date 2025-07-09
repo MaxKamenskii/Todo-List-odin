@@ -9,8 +9,20 @@ import { createToDoModal, saveModalData, createToDo, populateListOptions, popula
 const addToDoButton = document.getElementById("addNewToDoButton")
 //check whether there is data of todos in local storage
 // and if there is, then create classes of these todos and add them to the list of all todos
-export function updateToDosFromLocalStorage(){
-    if(JSON.parse(localStorage.getItem('listOfTodos'))){
+
+const listOfTodos = []
+function generateDefaultToDos(){
+    const firstToDo = { title: "Do Laundry", description: "Wash darks and whites separately. Don’t forget to fold and put away.", list: "", priority: "high", dueDate: "2025-07-22" }
+    const secondToDo = { title: "Clean the desk", description: "take out all the trash from desk like papers, docs, coffe cup", list: "inbox", priority: "low", dueDate: "2025-07-22" }
+    const thirdTodo = { title: "Water the plants", description: "Focus on the ones by the window—soil's looking dry.", list: "inbox", priority: "medium", dueDate: "2025-07-22" }
+    const forthToDo = { title: "Finish CS50 Week 5 Lecture", description: "take notes in Notion", list: "inbox", priority: "medium", dueDate: "2025-07-22" }
+    const fifthToDo = { title: "Buy grocceries", description: "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", list: "inbox", priority: "high", dueDate: "2025-07-22" }
+    const sixthToDo = { title: "Do flashcards", description: "go through the list of 50 words", list: "inbox", priority: "low", dueDate: "2025-07-22" }
+    const seventhToDo = { title: "Debug the To Do list app", description: "oh there is so much to debug", list: "inbox", priority: "low", dueDate: "2025-07-22" }
+    listOfTodos.push(firstToDo, secondToDo, thirdTodo, forthToDo, fifthToDo, sixthToDo, seventhToDo)
+}
+
+function updateAllToDosFromLocalStorage(){
         const allToDosJSON = JSON.parse(localStorage.getItem('listOfTodos'))
         console.log("allToDosJSON")
         console.log(allToDosJSON)
@@ -28,6 +40,15 @@ export function updateToDosFromLocalStorage(){
         // console.log(toDofromStorage)
         console.log("updateToDosFromLocalStorage is working")
         console.log(allToDos)
+    }
+export function updateToDosFromLocalStorage(){
+    if(!JSON.parse(localStorage.getItem('listOfTodos'))){
+        generateDefaultToDos()
+        localStorage.setItem('listOfTodos', JSON.stringify(listOfTodos))
+        updateAllToDosFromLocalStorage()
+    } else
+    if(JSON.parse(localStorage.getItem('listOfTodos'))){
+        updateAllToDosFromLocalStorage()
     }
 }
 
