@@ -6,9 +6,9 @@ import { generateContentPage, addListsToSideBar, createNewList} from './DOM_list
 // import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
 import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities, closeWithoutSaving } from "./toDoModal.js";
+import { initialLocalStorage, updateStorage, updateToDosFromLocalStorage } from "./storage.js";
 
-console.log(JSON.parse(JSON.stringify(allToDos)));
-console.log([...allToDos])
+// console.log([...allToDos])
 
 const homeList = new List("Home")
 const studyList = new List("Study")
@@ -35,23 +35,19 @@ const fifthToDo = new ToDo("Buy grocceries", "buy milk, chicken, cucumbers, brea
 const sixthToDo = new ToDo("Do flashcards", "go through the list of 50 words", "inbox", "medium", "2025-07-22")
 const seventhToDo = new ToDo("Debug the To Do list app", "oh there is so much to debug", "inbox", "medium", "2025-07-22")
 
-firstToDo.addToAllToDos()
-secondToDo.addToAllToDos()
-thirdToDo.addToAllToDos()
-forthToDo.addToAllToDos()
-fifthToDo.addToAllToDos()
-sixthToDo.addToAllToDos()
-seventhToDo.addToAllToDos()
-firstToDo.addToTheList(homeList)
-fifthToDo.addToTheList(homeList)
-sixthToDo.addToTheList(studyList)
-secondToDo.done = true;
+// firstToDo.addToAllToDos()
+// secondToDo.addToAllToDos()
+// thirdToDo.addToAllToDos()
+// forthToDo.addToAllToDos()
+// fifthToDo.addToAllToDos()
+// sixthToDo.addToAllToDos()
+// seventhToDo.addToAllToDos()
+// firstToDo.addToTheList(homeList)
+// fifthToDo.addToTheList(homeList)
+// sixthToDo.addToTheList(studyList)
+// secondToDo.done = true;
 
-// firstToDo.deleteToDo()
-
-
-console.log(allToDos)
-console.log(lists)
+updateToDosFromLocalStorage()
 
 generateContentPage(1)
 
@@ -112,6 +108,7 @@ addToDoButton.addEventListener('click', () => {
     createToDo()
     toDoInputTitle.value = ""
     toDoDescription.value = ""
+    updateStorage()
     let header = document.querySelector('.contentHeader')
     let headerId = header.dataset.listid
     generateContentPage(headerId)
@@ -124,9 +121,9 @@ document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoCheckbox')){
         console.log("clicked a checkbox")
         const checkboxId = event.target.dataset.checkboxid;
-        console.log(checkboxId)
+        // console.log(checkboxId)
         toggleToDo(checkboxId)
-        console.log(allToDos)
+        // console.log(allToDos)
     }
 })
 
@@ -134,9 +131,9 @@ document.addEventListener('click', function(event){
 
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoElement')){
-        console.log("clicked a to do element")
+        // console.log("clicked a to do element")
         let toDoId = event.target.dataset.todoelement;
-        console.log(`toDoId is: ${toDoId}`)
+        // console.log(`toDoId is: ${toDoId}`)
         createToDoModal(toDoId)
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
         theModal.showModal()
@@ -147,8 +144,9 @@ document.addEventListener('click', function(event){
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('modalSaveButton')){
         let toDoId = event.target.dataset.savebuttonid
-        console.log(`save button id is: ${toDoId}`)
+        // console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
+        // updateStorage()
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
         let header = document.querySelector('.contentHeader')
         let headerId = header.dataset.listid
@@ -174,10 +172,11 @@ document.addEventListener('click', function(event){
         // console.log(toDoid)
         for(const toDo of allToDos){
             if(toDo.id === toDoid){
-                console.log(toDo.title)
+                // console.log(toDo.title)
                 toDo.deleteToDo()
                 let header = document.querySelector('.contentHeader')
                 let headerId = header.dataset.listid
+                // updateStorage()
                 generateContentPage(headerId)
             }
         }

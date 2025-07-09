@@ -1,6 +1,6 @@
-console.log("Module loaded");
+// export const allToDos = JSON.parse(localStorage.getItem('listOfTodos')) || [];
 export const allToDos = [];
-export const lists = []
+export const lists = [];
 export const priorities = []
 
 export class ToDo {
@@ -18,10 +18,6 @@ export class ToDo {
         allToDos.push(this)
     }
     deleteToDo(){
-        // const indexOfToDo = allToDos.findIndex(todo => todo.title === this.title)
-        // if (indexOfToDo !== -1) {
-        // allToDos.splice(indexOfToDo, 1)
-        // }
         this.list = "trash"
     }
     addToTheList(listName) {
@@ -58,6 +54,10 @@ export class ToDo {
     changeList(newList) {
         this.list = newList;
     }
+}
+
+export function addToTrash(toDoObject){
+    toDoObject.list = "trash"
 }
 
 export class List{

@@ -2,6 +2,7 @@ import {allToDos} from './ToDos.js'
 import {ToDo, createNewToDo, lists, priorities} from './ToDos.js'
 // import {lists, List, createList, generateListPage} from './projects.js'
 import { generateContentPage } from './DOM_lists.js';
+import { updateStorage } from './storage.js';
 
 const container = document.getElementsByClassName("container")
 export function createToDo() {
@@ -14,19 +15,20 @@ export function createToDo() {
     if(toDoTitle != ""){
         let newToDoInstance = new ToDo(toDoTitle, toDoDescription, toDoList, toDoPriority, toDoDueDate)
         newToDoInstance.addToAllToDos()
-        console.log(allToDos)
+        // console.log(allToDos)
     } else {
         alert("please provide a title for To Do")
     }
+    updateStorage()
 }
 
 export function populateListOptions(){
-    console.log("populateListOption function fired")
-    console.log(`List of lists: ${lists}`)
-    console.log(lists[0].name)
+    // console.log("populateListOption function fired")
+    // console.log(`List of lists: ${lists}`)
+    // console.log(lists[0].name)
     for(const listEl of lists){
         if(listEl.id != 2){
-            console.log(listEl.name)
+            // console.log(listEl.name)
             listEl.populate("toDoListSelect")
         }
         
@@ -67,7 +69,7 @@ export function createToDoModal(elId){
     const header = document.querySelector(".contentHeader")
     let headerId = header.dataset.listid
     if(headerId === "2"){
-        console.log(`Header dataset ${header.dataset.listid}`)
+        // console.log(`Header dataset ${header.dataset.listid}`)
         modalSaveButton.innerHTML = "Restore"
     } else {
         modalSaveButton.innerHTML = "Save"
@@ -113,11 +115,11 @@ export function createToDoModal(elId){
     const predetermendPriority = modalPriority.innerHTML
     for(const priority of priorities){
         let option = document.createElement('option')
-        console.log("Populating modal")
-        console.log(option)
+        // console.log("Populating modal")
+        // console.log(option)
         option.text = priority.name;
         option.value = priority.name.toLowerCase()
-        console.log(`Predetermened option is:${predetermendPriority}`)
+        // console.log(`Predetermened option is:${predetermendPriority}`)
         if(option.value === predetermendPriority.toLocaleLowerCase()){
             option.setAttribute('selected', 'selected')
         }
@@ -127,10 +129,10 @@ export function createToDoModal(elId){
     for(const list of lists){
         if(list.id != "2"){
             let option = document.createElement('option')
-            console.log("Populating list option")
+            // console.log("Populating list option")
             option.text = list.name
             option.value = list.name.toLowerCase()
-            console.log(`Predetermend option is ${predetermendList}`)
+            // console.log(`Predetermend option is ${predetermendList}`)
             if(option.value === predetermendList.toLocaleLowerCase()){
                 option.setAttribute('selected', 'selected')
             }
@@ -158,10 +160,10 @@ export function saveModalData(elId) {
             toDoEl.list = modalListElement.value
             toDoEl.dueDate = modalDateElement.value
             // console.log(`Title after changing: ${toDoEl.title}`)
-            console.log(toDoEl.description)
+            // console.log(toDoEl.description)
             toDoEl.description = modalDescriptionElement.value
             let childDiv = toDoElement.children[1]
-            console.log(childDiv)
+            // console.log(childDiv)
             childDiv.innerHTML = toDoEl.title
         }
     }
