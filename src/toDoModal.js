@@ -22,6 +22,7 @@ export function createToDo() {
 }
 
 export function populateListOptions(){
+
     for(const listEl of lists){
         if(listEl.id != 2){
             listEl.populate("toDoListSelect")
