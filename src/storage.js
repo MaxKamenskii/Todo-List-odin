@@ -15,11 +15,21 @@ function generateDefaultToDos(){
     const firstToDo = { title: "Do Laundry", description: "Wash darks and whites separately. Don’t forget to fold and put away.", list: "", priority: "high", dueDate: "2025-07-22" }
     const secondToDo = { title: "Clean the desk", description: "take out all the trash from desk like papers, docs, coffe cup", list: "inbox", priority: "low", dueDate: "2025-07-22" }
     const thirdTodo = { title: "Water the plants", description: "Focus on the ones by the window—soil's looking dry.", list: "inbox", priority: "medium", dueDate: "2025-07-22" }
-    const forthToDo = { title: "Finish CS50 Week 5 Lecture", description: "take notes in Notion", list: "inbox", priority: "medium", dueDate: "2025-07-22" }
+    const forthToDo = { title: "Finish CS50 Week 5 Lecture", description: "take notes in Notion", list: "study", priority: "medium", dueDate: "2025-07-22" }
     const fifthToDo = { title: "Buy grocceries", description: "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", list: "inbox", priority: "high", dueDate: "2025-07-22" }
-    const sixthToDo = { title: "Do flashcards", description: "go through the list of 50 words", list: "inbox", priority: "low", dueDate: "2025-07-22" }
+    const sixthToDo = { title: "Do flashcards", description: "go through the list of 50 words", list: "study", priority: "low", dueDate: "2025-07-22" }
     const seventhToDo = { title: "Debug the To Do list app", description: "oh there is so much to debug", list: "inbox", priority: "low", dueDate: "2025-07-22" }
-    listOfTodos.push(firstToDo, secondToDo, thirdTodo, forthToDo, fifthToDo, sixthToDo, seventhToDo)
+    const eightToDo = { title: "Clean the kitchen", description: "Wipe down counters, wash dishes, and take out the trash.", list: "Home", priority: "low", dueDate: "2025-07-22" }
+    const ninthToDo = { title: "Meal prep for 3 days", description: "Cook and portion chicken with rice", list: "Home", priority: "low", dueDate: "2025-07-25" }
+    const tenthToDo = { title: "Order water", description: "We need 4 huge water bottles to prepare for the trip", list: "", priority: "high", dueDate: "2025-07-25" }
+    const eleventsToDo = { title: "Finish JavaScript exercises", description: "Complete the functions and objects section from the tutorial", list: "", priority: "low", dueDate: "2025-07-22" }
+    const twelvethToDo = { title: "Practice algorithm problems", description: "Solve 10 medium leetcode problems", list: "", priority: "medium", dueDate: "2025-07-26"}
+    const thirteenthToDo = { title: "Declutter wardrobe", description: "Sort out clothes I don’t wear and prepare a donation bag.", list: "Home", priority: "low", dueDate: "2025-08-26"}
+    const fourteenthToDo = { title: "Fix broken drawer handle", description: "Tighten screws or replace if needed", list: "Home", priority: "high", dueDate: "2025-07-29"}
+    const fifteenthToDo = { title: "Write a summary of OOP concepts", description: "Include constructor functions, prototypes, and classes.", list: "Study", priority: "high", dueDate: "2025-07-26"}
+    // const ToDo = { title: "", description: "", list: "", priority: "high", dueDate: "2025-07-26"}
+    
+    listOfTodos.push(firstToDo, secondToDo, thirdTodo, forthToDo, fifthToDo, sixthToDo, seventhToDo, eightToDo, ninthToDo, tenthToDo, eleventsToDo, twelvethToDo, thirteenthToDo, fourteenthToDo, fifteenthToDo)
 }
 
 function updateAllToDosFromLocalStorage(){
@@ -52,19 +62,6 @@ export function updateToDosFromLocalStorage(){
     }
 }
 
-export function initialLocalStorage(){
-    if(JSON.parse(localStorage.getItem('listOfTodos'))){
-        const allToDosJSON = JSON.parse(localStorage.getItem('listOfTodos'))
-        for(let i = 0; i < allToDosJSON; i++){
-            allToDos[i] = allToDosJSON[i]
-            console.log('allToDos after initialization')
-            console.log(allToDos)
-        }
-    } else {
-        const allToDosJSON = []
-        console.log("else")
-    }
-}
 
 export function updateStorage() {
     const allToDosJSON = JSON.stringify(allToDos)
