@@ -23,8 +23,6 @@ export class ToDo {
     addToTheList(listName) {
         if(allToDos.includes(this)) {
         this.list = listName.name;
-        // let id = this.id
-        // listName.ToDos.push(id)
         } else {
             console.log("The ToDo has been deleted")
         }

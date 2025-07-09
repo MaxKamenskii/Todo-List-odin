@@ -1,23 +1,11 @@
 import "./styles.css";
 import {allToDos} from './ToDos.js'
 import {ToDo, List, lists, Priority, priorities} from './ToDos.js'
-// import {lists, List, createList, generateListPage} from './projects.js'
 import { generateContentPage, addListsToSideBar, createNewList} from './DOM_lists.js'
-// import { generateInbox } from "./inbox.js";
 import { toggleToDo } from "./completeToDo.js";
 import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities, closeWithoutSaving } from "./toDoModal.js";
-import { initialLocalStorage, updateStorage, updateToDosFromLocalStorage } from "./storage.js";
+import { initialLocalStorage, updateStorage, updateListsFromLocalStorage, updateToDosFromLocalStorage } from "./storage.js";
 
-// console.log([...allToDos])
-
-const homeList = new List("Home")
-const studyList = new List("Study")
-const inbox = new List("inbox")
-const trash = new List("trash")
-inbox.id = "1";
-trash.id = "2";
-trash.addToArrayOfLists()
-inbox.addToArrayOfLists()
 const low = new Priority("Low")
 const medium = new Priority("Medium");
 const high = new Priority("High")
@@ -25,29 +13,9 @@ low.addToPrioritiesList()
 medium.addToPrioritiesList()
 high.addToPrioritiesList()
 
-homeList.addToArrayOfLists()
-studyList.addToArrayOfLists()
-const firstToDo = new ToDo("Do Laundry", "Wash darks and whites separately. Don’t forget to fold and put away.", "", "high", "2025-07-22")
-const secondToDo = new ToDo("Clean the desk", "take out all the trash from desk like papers, docs, coffe cup", "inbox", "low", "2025-07-22")
-const thirdToDo = new ToDo("Water the plants", "Focus on the ones by the window—soil's looking dry.", "inbox", "medium", "2025-07-22")
-const forthToDo = new ToDo("Finish CS50 Week 5 Lecture", "take notes in Notion", "inbox", "medium", "2025-07-22")
-const fifthToDo = new ToDo("Buy grocceries", "buy milk, chicken, cucumbers, bread, oil, butter, ice cream", "inbox", "medium", "2025-07-22")
-const sixthToDo = new ToDo("Do flashcards", "go through the list of 50 words", "inbox", "medium", "2025-07-22")
-const seventhToDo = new ToDo("Debug the To Do list app", "oh there is so much to debug", "inbox", "medium", "2025-07-22")
-
-// firstToDo.addToAllToDos()
-// secondToDo.addToAllToDos()
-// thirdToDo.addToAllToDos()
-// forthToDo.addToAllToDos()
-// fifthToDo.addToAllToDos()
-// sixthToDo.addToAllToDos()
-// seventhToDo.addToAllToDos()
-// firstToDo.addToTheList(homeList)
-// fifthToDo.addToTheList(homeList)
-// sixthToDo.addToTheList(studyList)
-// secondToDo.done = true;
 
 updateToDosFromLocalStorage()
+updateListsFromLocalStorage()
 
 generateContentPage(1)
 
@@ -77,7 +45,6 @@ addListsToSideBar()
 // Generate list page
 document.addEventListener('click', function(event){
         if(event.target.classList.contains('listElement')) {
-            console.log(`target id ${event.target.dataset.listelementid}`)
             generateContentPage(event.target.dataset.listelementid)
         }
     })
@@ -119,11 +86,8 @@ addToDoButton.addEventListener('click', () => {
 // Toggle to do
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoCheckbox')){
-        console.log("clicked a checkbox")
         const checkboxId = event.target.dataset.checkboxid;
-        // console.log(checkboxId)
         toggleToDo(checkboxId)
-        // console.log(allToDos)
     }
 })
 
@@ -131,9 +95,7 @@ document.addEventListener('click', function(event){
 
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoElement')){
-        // console.log("clicked a to do element")
         let toDoId = event.target.dataset.todoelement;
-        // console.log(`toDoId is: ${toDoId}`)
         createToDoModal(toDoId)
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
         theModal.showModal()
@@ -144,9 +106,8 @@ document.addEventListener('click', function(event){
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('modalSaveButton')){
         let toDoId = event.target.dataset.savebuttonid
-        // console.log(`save button id is: ${toDoId}`)
         saveModalData(toDoId)
-        // updateStorage()
+        updateStorage()
         const theModal = document.querySelector(`[data-modalId="${toDoId}"]`)
         let header = document.querySelector('.contentHeader')
         let headerId = header.dataset.listid
@@ -169,14 +130,12 @@ document.addEventListener('click', function(event){
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoDeleteButton')){
         let toDoid = event.target.dataset.tododeleteid
-        // console.log(toDoid)
         for(const toDo of allToDos){
             if(toDo.id === toDoid){
-                // console.log(toDo.title)
                 toDo.deleteToDo()
                 let header = document.querySelector('.contentHeader')
                 let headerId = header.dataset.listid
-                // updateStorage()
+                updateStorage()
                 generateContentPage(headerId)
             }
         }

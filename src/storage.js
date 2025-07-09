@@ -11,6 +11,16 @@ const addToDoButton = document.getElementById("addNewToDoButton")
 // and if there is, then create classes of these todos and add them to the list of all todos
 
 const listOfTodos = []
+const listOfLists = []
+
+function generateDefaultLists(){
+    const inbox = { name: "inbox", id: "1" }
+    const trash = { name: "trash", id: "2" }
+    const home = { name: "Home", id: "3" }
+    const study = { name: "Study", id: "4" }
+
+    listOfLists.push(inbox, trash, home, study)
+}
 function generateDefaultToDos(){
     const firstToDo = { title: "Do Laundry", description: "Wash darks and whites separately. Don’t forget to fold and put away.", list: "", priority: "high", dueDate: "2025-07-22" }
     const secondToDo = { title: "Clean the desk", description: "take out all the trash from desk like papers, docs, coffe cup", list: "inbox", priority: "low", dueDate: "2025-07-22" }
@@ -31,12 +41,10 @@ function generateDefaultToDos(){
     
     listOfTodos.push(firstToDo, secondToDo, thirdTodo, forthToDo, fifthToDo, sixthToDo, seventhToDo, eightToDo, ninthToDo, tenthToDo, eleventsToDo, twelvethToDo, thirteenthToDo, fourteenthToDo, fifteenthToDo)
 }
-
-function updateAllToDosFromLocalStorage(){
+// check if there is a list of todos in the local storage
+//if there is none, then generate and update the list of todos from the list in the storage
+function updateAllToDosListFromLocalStorage(){
         const allToDosJSON = JSON.parse(localStorage.getItem('listOfTodos'))
-        console.log("allToDosJSON")
-        console.log(allToDosJSON)
-        console.log(allToDosJSON[1].title)
         for(let i = 0; i < allToDosJSON.length; i++){
             const title = allToDosJSON[i].title;
             const description = allToDosJSON[i].description
@@ -47,22 +55,44 @@ function updateAllToDosFromLocalStorage(){
             let toDofromStorage = new ToDo (title, description, list, priority, dueDate, done)
             toDofromStorage.addToAllToDos();
         }
-        // console.log(toDofromStorage)
-        console.log("updateToDosFromLocalStorage is working")
-        console.log(allToDos)
     }
 export function updateToDosFromLocalStorage(){
     if(!JSON.parse(localStorage.getItem('listOfTodos'))){
         generateDefaultToDos()
         localStorage.setItem('listOfTodos', JSON.stringify(listOfTodos))
-        updateAllToDosFromLocalStorage()
+        updateAllToDosListFromLocalStorage()
     } else
     if(JSON.parse(localStorage.getItem('listOfTodos'))){
-        updateAllToDosFromLocalStorage()
+        updateAllToDosListFromLocalStorage()
     }
 }
 
+function updateListsFromTheLocalStorage(){
+    const listsJSON = JSON.parse(localStorage.getItem('listOfLists'))
+    for(let i = 0; i < listsJSON.length; i++){
+        const name = listsJSON[i].name;
+        const id = listsJSON[i].id;
+        let listFromStorage = new List (name, id)
+        listFromStorage.addToArrayOfLists();
+        if(listFromStorage.name == "inbox"){
+            listFromStorage.id = "1";
+        }
+        if(listFromStorage.name == "trash"){
+            listFromStorage.id = "2";
+        }
+    }
+}
+export function updateListsFromLocalStorage(){
+    if(!JSON.parse(localStorage.getItem('listOfLists'))){
+        generateDefaultLists()
+        localStorage.setItem('listOfLists', JSON.stringify(listOfLists))
+        updateListsFromTheLocalStorage()
+    } else if(JSON.parse(localStorage.getItem('listOfLists'))){
+        updateListsFromTheLocalStorage()
+    }
+}
 
+// Function for updating the storage any time user does some action in the app
 export function updateStorage() {
     const allToDosJSON = JSON.stringify(allToDos)
     localStorage.setItem('listOfTodos', allToDosJSON)
