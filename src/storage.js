@@ -94,8 +94,12 @@ export function updateListsFromLocalStorage(){
 
 // Function for updating the storage any time user does some action in the app
 export function updateStorage() {
+    
     const allToDosJSON = JSON.stringify(allToDos)
     localStorage.setItem('listOfTodos', allToDosJSON)
     const listsJSON = JSON.stringify(lists)
     localStorage.setItem('listOfLists', listsJSON)
+    console.log("storage updated")
+    console.log(allToDos)
+    console.log(allToDosJSON)
 }

@@ -14,7 +14,13 @@ export class ToDo {
         this.id = crypto.randomUUID()
     }
     addToAllToDos() {
-        this.done = false;
+        if(this.done == "false"){
+            this.done = "false"
+        } else if(this.done == "true"){
+            this.done = "true"
+        } else {
+            this.done = "false"
+        }
         allToDos.push(this)
     }
     deleteToDo(){
@@ -31,16 +37,16 @@ export class ToDo {
         this.priority = newPriority
     }
     doneStatusDone(){
-        this.done = true
+        this.done = "true"
     }
     doneStatusNotDone(){
-        this.done = false
+        this.done = "false"
     }
     toggleDoneStatus() {
-        if(this.done === false){
-            this.done = true
+        if(this.done === "false" || this.done == ""){
+            this.done = "true"
         } else {
-            this.done = false
+            this.done = "false"
         }
     }
     changeTitle(newTitle) {

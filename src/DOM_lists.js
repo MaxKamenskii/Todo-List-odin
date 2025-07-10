@@ -54,7 +54,7 @@ export function generateContentPage(elId) {
                 checkBox.setAttribute("type", "checkbox")
                 checkBox.classList.add("toDoCheckbox")
                 checkBox.setAttribute('data-checkBoxId', toDoItem.id)
-                if(toDoItem.done === true){
+                if(toDoItem.done === "true"){
                     checkBox.checked = true;
                 }
                 toDoElement.classList.add('toDoElement')

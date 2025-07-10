@@ -16,6 +16,8 @@ high.addToPrioritiesList()
 
 updateToDosFromLocalStorage()
 updateListsFromLocalStorage()
+console.log(allToDos)
+
 
 generateContentPage(1)
 
@@ -98,6 +100,8 @@ document.addEventListener('click', function(event){
     if(event.target.classList.contains('toDoCheckbox')){
         const checkboxId = event.target.dataset.checkboxid;
         toggleToDo(checkboxId)
+        console.log(allToDos)
+        updateStorage()
     }
 })
 
