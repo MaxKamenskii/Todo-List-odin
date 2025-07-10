@@ -1,5 +1,5 @@
 // export const allToDos = JSON.parse(localStorage.getItem('listOfTodos')) || [];
-export const allToDos = [];
+export let allToDos = [];
 export const lists = [];
 export const priorities = []
 
@@ -82,6 +82,26 @@ export class List{
     }
 }
 
+export function deleteList(listId){
+        for(let list of lists){
+            if(list.id === listId){
+                console.log("listId is matching")
+                const index = lists.indexOf(list)
+                console.log(index)
+                if(index > -1){
+                lists.splice(index, 1);
+                console.log("lists was spliced")
+                for(let task of allToDos){
+                    if(task.list.toLowerCase() === list.name.toLowerCase()){
+                        task.list = "trash"
+                    }
+                }
+        }
+            }
+        }
+        console.log(lists)
+    }
+
 export class Priority{
     constructor(name) {
         this.name = name;
@@ -105,4 +125,9 @@ export class Priority{
         selectElement.add(option)
         console.log(selectElement)
     }
+}
+
+export function cleanTrash(){
+    const filteredToDos = allToDos.filter(task => task.list !== "trash")
+    allToDos = filteredToDos;
 }

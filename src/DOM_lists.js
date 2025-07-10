@@ -1,16 +1,26 @@
 import { allToDos, ToDo, createNewToDo, lists, List } from "./ToDos";
 import { updateStorage } from "./storage";
+import trashPic from "../assets/trash-black.svg"
+
 
 export function addListsToSideBar(){
     sideBarLists.innerHTML = ""
     for(const listEl of lists){
         if(listEl.id != "1" && listEl.id != "2"){
             const listElement = document.createElement('div');
+            const deleteButton = document.createElement('button')
+            // deleteButton.innerHTML = "Delete"
+            const trashBin = document.createElement('img');
+            trashBin.src = trashPic;
+            deleteButton.append(trashBin)
+            deleteButton.classList.add("deleteListButton")
+            deleteButton.setAttribute("data-deleteButtonId", `${listEl.id}`)
             listElement.classList.add("sideBar-el")
             listElement.classList.add("listElement")
             listElement.setAttribute("data-listElementId", `${listEl.id}`)
             listElement.innerHTML = listEl.name;
             sideBarLists.append(listElement)
+            listElement.append(deleteButton)
         }
     }
 }
@@ -37,7 +47,14 @@ export function generateContentPage(elId) {
     // a set of todos on content page
     const contentBody = document.createElement('div')
     contentBody.classList.add('contentBody')
-    
+    const listId = headerDiv.dataset.listid
+    if(listId === "2"){
+        console.log("list element is 2")
+                    const cleanTrash = document.createElement('button')
+                    cleanTrash.classList.add('cleanTrashButton')
+                    cleanTrash.innerHTML = "Clean"
+                    headerBlock.append(cleanTrash)
+                }
     for(const list of lists){
         if(list.id === listElement.dataset.listelementid){
             headerText.innerHTML = list.name.toUpperCase()
@@ -68,8 +85,7 @@ export function generateContentPage(elId) {
                 }
             }
         }
-        }
-        
+        } 
     }
     
     content.append(headerDiv, contentBody)

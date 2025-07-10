@@ -1,6 +1,5 @@
 import "./styles.css";
-import {allToDos} from './ToDos.js'
-import {ToDo, List, lists, Priority, priorities} from './ToDos.js'
+import {allToDos, ToDo, List, lists, Priority, priorities, deleteList, cleanTrash } from './ToDos.js'
 import { generateContentPage, addListsToSideBar, createNewList} from './DOM_lists.js'
 import { toggleToDo } from "./completeToDo.js";
 import { createToDoModal, saveModalData, createToDo, populateListOptions, populatePriorities, closeWithoutSaving } from "./toDoModal.js";
@@ -153,5 +152,28 @@ document.addEventListener('click', function(event){
                 generateContentPage(headerId)
             }
         }
+    }
+})
+
+//delete list
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('deleteListButton')){
+        let listId = event.target.dataset.deletebuttonid
+        console.log(listId)
+        deleteList(listId)
+        generateContentPage(1)
+        console.log(allToDos)
+        updateStorage()
+        addListsToSideBar()
+    }
+})
+
+//delete todos permanently
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('cleanTrashButton')){
+        
+        cleanTrash()
+        updateStorage()
+        generateContentPage(2)
     }
 })
